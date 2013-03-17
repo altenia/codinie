@@ -4,6 +4,7 @@ CODINI
 About
 -----
 A PHP based code generation tool.
+It is open source with Apache 2.0 license.
 
 Installation
 ------------
@@ -12,3 +13,8 @@ accessed from web. Open a browser and go to the location
 http://localhost/codini/index.php?_c=Home
 
 No database required. Just make user you have file write permission.
+
+Using
+-----
+Go to the Codini home, and create a new project.
+
