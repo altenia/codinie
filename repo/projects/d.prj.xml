@@ -1,0 +1,20 @@
+<project>
+	<name>Hello world</name>
+	<owner>Young Suk</owner>
+	<language>Java</language>
+	<description>d</description>
+	<last-modif>13/03/16-10:09:04</last-modif>
+	<data-source>
+		<type></type>
+		<url>localhost</url>
+		<username>test</username>
+	</data-source>
+	<active-templates>
+		<template name="php_client_wf" />
+		<template name="php_dao_wf" />
+		<template name="php_model" />
+	</active-templates>
+	<params>
+		<param name="prefix" value="Test" />
+	</params>
+</project>

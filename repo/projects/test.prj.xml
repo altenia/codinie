@@ -1,0 +1,11 @@
+<project>
+	<name>test</name>
+	<language></language>
+	<description>						</description>
+	<last-modif>13/03/15-09:42:59</last-modif>
+	<data-source>
+		<type>MySqli</type>
+		<url>test</url>
+		<username>test</username>
+	</data-source>
+</project>

@@ -1,0 +1,22 @@
+<project>
+	<name>My First Project</name>
+	<owner>Young Suk Ahn</owner>
+	<created>2013/01/03</created>
+	<language>Java</language>
+	<last-modif>2013/01/03</last-modif>
+	<data-source>
+		<type>MySqli</type>
+		<url>localhost</url>
+		<username>test</username>
+	</data-source>
+	
+	<active-templates>
+		<template name="php_model" />
+		<template name="php_model" />
+	</active-templates>
+	
+	<params>
+		<param name="prefix" value="Test" />
+		<param name="suffix" value="Ex" />
+	</params>
+</project>

@@ -1,0 +1,13 @@
+[git]
+Initialize a folder: git init
+Adding: git add .
+Commiting to local repository: git commit
+Creating branch: git branch <branchname>
+Using branch: git checkout <branchname>
+Connecting to remote repo: git remote add origin <remote_url>
+Checking: git remote -v
+git push -u origin master
+
+Make a copy form remote repository: git clone <remote_url>
+
+Update from remote: git pull

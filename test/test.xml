@@ -1,0 +1,255 @@
+﻿﻿﻿﻿PHPUnit 3.7.15 by Sebastian Bergmann.
+
+ETABLES: Array
+(
+    [0] => Array
+        (
+            [0] => ATest.hbm.xml
+            [1] => ?
+        )
+
+    [1] => Array
+        (
+            [0] => Praise.hbm.xml
+            [1] => ?
+        )
+
+    [2] => Array
+        (
+            [0] => PraiseSupport.hbm.xml
+            [1] => ?
+        )
+
+)
+SimpleXMLElement Object
+(
+    [class] => Array
+        (
+            [0] => SimpleXMLElement Object
+                (
+                    [@attributes] => Array
+                        (
+                            [name] => com.seednia.module.core.praise.dto.PraiseDto
+                            [table] => Post
+                            [catalog] => seednia
+                        )
+
+                    [meta] => 
+			Post information
+		
+                    [comment] => SimpleXMLElement Object
+                        (
+                        )
+
+                    [id] => SimpleXMLElement Object
+                        (
+                            [@attributes] => Array
+                                (
+                                    [name] => sid
+                                    [type] => long
+                                )
+
+                            [meta] => Unique (sequential) system ID
+                            [column] => SimpleXMLElement Object
+                                (
+                                    [@attributes] => Array
+                                        (
+                                            [name] => sid
+                                        )
+
+                                )
+
+                            [generator] => SimpleXMLElement Object
+                                (
+                                    [@attributes] => Array
+                                        (
+                                            [class] => identity
+                                        )
+
+                                )
+
+                        )
+
+                    [property] => Array
+                        (
+                            [0] => SimpleXMLElement Object
+                                (
+                                    [@attributes] => Array
+                                        (
+                                            [name] => domainId
+                                            [type] => string
+                                        )
+
+                                    [meta] => The ID of the domain that this record is context of
+                                    [column] => SimpleXMLElement Object
+                                        (
+                                            [@attributes] => Array
+                                                (
+                                                    [name] => domainId
+                                                    [not-null] => true
+                                                    [length] => 64
+                                                )
+
+                                        )
+
+                                )
+
+                            [1] => SimpleXMLElement Object
+                                (
+                                    [@attributes] => Array
+                                        (
+                                            [name] => domainId
+                                            [type] => string
+                                        )
+
+                                    [meta] => The ID of the domain that this record is context of
+                                    [column] => SimpleXMLElement Object
+                                        (
+                                            [@attributes] => Array
+                                                (
+                                                    [name] => domainId
+                                                    [not-null] => true
+                                                    [length] => 64
+                                                )
+
+                                        )
+
+                                )
+
+                        )
+
+                    [many-to-one] => Array
+                        (
+                            [0] => SimpleXMLElement Object
+                                (
+                                    [@attributes] => Array
+                                        (
+                                            [name] => creatorDto
+                                            [column] => creatorSid
+                                            [not-null] => true
+                                            [fetch] => join
+                                            [class] => com.seednia.module.core.user.dto.UserDto
+                                        )
+
+                                    [meta] => The creator of the record
+                                )
+
+                            [1] => SimpleXMLElement Object
+                                (
+                                    [@attributes] => Array
+                                        (
+                                            [name] => userDto
+                                            [column] => userSid
+                                            [not-null] => true
+                                            [fetch] => join
+                                            [class] => com.seednia.module.core.user.dto.UserDto
+                                        )
+
+                                    [meta] => User that is being praised (boasted/bragged).
+                                )
+
+                        )
+
+                )
+
+            [1] => SimpleXMLElement Object
+                (
+                    [@attributes] => Array
+                        (
+                            [name] => com.seednia.module.core.praise.dto.PraiseSupportDto
+                            [table] => PraiseSupport
+                            [catalog] => seednia
+                        )
+
+                    [meta] => 
+			Post information
+		
+                    [comment] => SimpleXMLElement Object
+                        (
+                        )
+
+                    [id] => SimpleXMLElement Object
+                        (
+                            [@attributes] => Array
+                                (
+                                    [name] => sid
+                                    [type] => long
+                                )
+
+                            [meta] => Unique (sequential) system ID
+                            [column] => SimpleXMLElement Object
+                                (
+                                    [@attributes] => Array
+                                        (
+                                            [name] => sid
+                                        )
+
+                                )
+
+                            [generator] => SimpleXMLElement Object
+                                (
+                                    [@attributes] => Array
+                                        (
+                                            [class] => identity
+                                        )
+
+                                )
+
+                        )
+
+                    [property] => SimpleXMLElement Object
+                        (
+                            [@attributes] => Array
+                                (
+                                    [name] => domainId
+                                    [type] => string
+                                )
+
+                            [meta] => The ID of the domain that this record is context of
+                            [column] => SimpleXMLElement Object
+                                (
+                                    [@attributes] => Array
+                                        (
+                                            [name] => domainId
+                                            [not-null] => true
+                                            [length] => 64
+                                            [default] => 0
+                                        )
+
+                                )
+
+                        )
+
+                    [many-to-one] => SimpleXMLElement Object
+                        (
+                            [@attributes] => Array
+                                (
+                                    [name] => creatorDto
+                                    [column] => creatorSid
+                                    [not-null] => true
+                                    [fetch] => join
+                                    [class] => com.seednia.module.core.user.dto.UserDto
+                                )
+
+                            [meta] => The creator of the record
+                        )
+
+                )
+
+        )
+
+)
+
+
+Time: 0 seconds, Memory: 3.25Mb
+
+There was 1 error:
+
+1) DsIntrospectorHbmTest::test1
+Invalid argument supplied for foreach()
+
+C:\appservers\webapps\codini\application\classes\Ds_Introspector_Hbm.php:56
+C:\appservers\webapps\codini\test\DsIntrospectorHbmTest.php:24
+
+FAILURES!
+Tests: 1, Assertions: 0, Errors: 1.

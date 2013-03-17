@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.seednia.module.core.praise.dto.PraiseDto" table="Post" catalog="seednia">
+		<meta attribute="class-description">
+			Post information
+		</meta>
+		
+		<!-- Default fields (from AbstractRecord) {{ -->
+		<id name="sid" type="long">
+			<meta attribute="field-description">Unique (sequential) system ID</meta>
+			<column name="sid" />
+			<generator class="identity" />
+		</id>
+		
+		<property name="domainId" type="string">
+			<meta attribute="field-description">The ID of the domain that this record is context of</meta>
+			<column name="domainId" not-null="true" length="64" />
+		</property>
+		<many-to-one name="creatorDto" column="creatorSid" not-null="true" fetch="join"
+			class="com.seednia.module.core.user.dto.UserDto" >
+			<meta attribute="field-description">The creator of the record</meta>
+		</many-to-one>
+		<property name="createDt" type="java.util.Date">
+			<meta attribute="field-description">The date this record was created</meta>
+			<column name="createDt" not-null="true" />
+		</property>
+		<property name="modifyCounter" type="int">
+			<meta attribute="field-description">Number of times modified</meta>
+			<column name="modifyCounter" not-null="false" />
+		</property>
+		<property name="lastModifiedDt" type="java.util.Date">
+			<meta attribute="field-description">Time stamp of the last modification of the record</meta>
+			<column name="lastModifiedDt" not-null="false" />
+		</property>
+		<!-- }} Default fields (from AbstractRecord) -->
+
+		<property name="uuid" type="string" update="false" >
+			<meta attribute="field-description">GUID (assigned by system)</meta>
+			<column name="uuid" not-null="true" length="128" unique="true" index="idx_uuid"/>
+		</property>
+		
+		<many-to-one name="userDto" column="userSid" not-null="true" fetch="join"
+			class="com.seednia.module.core.user.dto.UserDto" >
+			<meta attribute="field-description">User that is being praised (boasted/bragged).</meta>
+		</many-to-one>
+	
+		<property name="adjective" type="string">
+			<meta attribute="field-description">The adjective that describes the "level" of praise (e.g. great, magnificent, awesome)</meta>
+			<column name="adjective" not-null="true" length="64"  />
+		</property>
+		
+		<property name="ability" type="string">
+			<meta attribute="field-description">Specific ability (skill or talent) that is being praised</meta>
+			<column name="ability" not-null="true" length="255"  />
+		</property>
+
+		<property name="privacyLevel" type="int">
+			<meta attribute="field-description">Visibility scope: 0=public, 1=domain, 2=friends,4=members,8=mentors</meta>
+			<column name="privacyLevel" />
+		</property>
+		<property name="numProofs" type="int">
+			<meta attribute="field-description">Number of proofs</meta>
+			<column name="numProofs"  />
+		</property>
+		<property name="numCheers" type="int">
+			<meta attribute="field-description">Number of likes</meta>
+			<column name="numCheers"  />
+		</property>
+
+	</class>
+	
+	
+	
+</hibernate-mapping>

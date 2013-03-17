@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.seednia.module.core.praise.dto.PraiseDto" table="Post" catalog="seednia">
+		<meta attribute="class-description">
+			Post information
+		</meta>
+		
+		<!-- Default fields (from AbstractRecord) {{ -->
+		<id name="sid" type="long">
+			<meta attribute="field-description">Unique (sequential) system ID</meta>
+			<column name="sid" />
+			<generator class="identity" />
+		</id>
+		
+		<property name="domainId" type="string">
+			<meta attribute="field-description">The ID of the domain that this record is context of</meta>
+			<column name="domainId" not-null="true" length="64" />
+		</property>
+		<many-to-one name="creatorDto" column="creatorSid" not-null="true" fetch="join"
+			class="com.seednia.module.core.user.dto.UserDto" >
+			<meta attribute="field-description">The creator of the record</meta>
+		</many-to-one>
+		
+		<property name="domainId" type="string">
+			<meta attribute="field-description">The ID of the domain that this record is context of</meta>
+			<column name="domainId" not-null="true" length="64" />
+		</property>
+		<many-to-one name="userDto" column="userSid" not-null="true" fetch="join"
+			class="com.seednia.module.core.user.dto.UserDto" >
+			<meta attribute="field-description">User that is being praised (boasted/bragged).</meta>
+		</many-to-one>
+	
+	</class>
+	
+	<class name="com.seednia.module.core.praise.dto.PraiseSupportDto" table="PraiseSupport" catalog="seednia">
+		<meta attribute="class-description">
+			Post information
+		</meta>
+		
+		<!-- Default fields (from AbstractRecord) {{ -->
+		<id name="sid" type="long">
+			<meta attribute="field-description">Unique (sequential) system ID</meta>
+			<column name="sid" />
+			<generator class="identity" />
+		</id>
+		
+		<property name="domainId" type="string"
+			update="false" index="domain_inx" >
+			<meta attribute="field-description">The ID of the domain that this record is context of</meta>
+			<column name="domainId" not-null="false" length="64" unique="true" default="0" />
+		</property>
+		<many-to-one name="creatorDto" column="creatorSid" not-null="true" fetch="join"
+			class="com.seednia.module.core.user.dto.UserDto" >
+			<meta attribute="field-description">The creator of the record</meta>
+		</many-to-one>
+		
+	</class>
+	
+</hibernate-mapping>
