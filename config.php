@@ -5,7 +5,7 @@
  
 define('APP_NAME', 'Codini');
 define('APP_TAGLINE', 'Speeding up the agility!');
-define('APP_VERSION', '0.4');
+define('APP_VERSION', '0.5');
 
 define('CONTEXT_PATH', 'codini');
 //define('SYS_PATH', realpath('.') . DIRECTORY_SEPARATOR);

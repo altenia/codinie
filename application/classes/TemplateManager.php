@@ -8,8 +8,18 @@ class TemplateManager
 	
 	public $templates = array();
 
+	/**
+	 *
+	 * @param array $template_details associative array  with keys:
+	 * 				'id'      => the id of the template
+	 *				'content' => 
+	 */
 	public function save($template_details)
 	{
+		$file_path = CODE_TEMPLATE_PATH . $template_details['id'] . self::TPL_FILE_SUFIX;
+		
+		//print_r($file_path); die();
+		save_to_file($file_path, $template_details['content']);
 	}
 	
 	public function delete($template_id)
@@ -35,7 +45,7 @@ class TemplateManager
 		if (!empty($template_files)) {
 			$templates = array();
 			foreach($template_files as $template_file) {
-				$templates[] = array('name' => $template_file[0]);
+				$templates[] = array('id' => $template_file[0]);
 			}
 		}
 		return $templates;
@@ -59,16 +69,27 @@ class TemplateManager
 		return new TemplateManager();
 	}
 	
-	public function validate($project_details)
+	public function validate($template_details)
 	{
 		$invalid_fields = array();
-		if (trim($project_details['id']) == false) {
+		// Trim is empty
+		if (trim($template_details['id']) == false) {
 			$invalid_fields['id'] = 'ID is required';
 		}
-		if (trim($project_details['name']) == false) {
-			$invalid_fields['name'] = 'Name is required';
+		if (trim($template_details['content']) == false) {
+			$invalid_fields['content'] = 'Name is required';
 		}
 		return $invalid_fields;
 	}
 	
+	public function read_file($filename)
+    {
+		$file_path = CODE_TEMPLATE_PATH . $filename;
+		if (!file_exists($file_path)) {
+			return null; 
+		}
+		$content = read_from_file($file_path);
+
+		return $content;
+	}
 }

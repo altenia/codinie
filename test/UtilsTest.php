@@ -18,4 +18,13 @@ class UtilsTest extends PHPUnit_Framework_TestCase
 		$this->assertFalse($result);
 	}
 	
+	public function testFile() {
+		$temp_file = "./test.file";
+		save_to_file($temp_file, "Hello World");
+		
+		$data = read_from_file($temp_file);
+		$this->assertEquals("Hello World", $data);
+		unlink($temp_file);
+
+	}
 }

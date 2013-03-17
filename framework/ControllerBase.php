@@ -84,8 +84,14 @@ class ControllerBase {
         $this->actionName = $actionName;
     }
 	
+	/**
+	 * Retrives the parameter value from GET or POST (in that order)
+	 */
 	public function getRequestParam($pname, $def_val = null)
 	{
+		if (array_key_exists($pname, $_GET)) {
+			return $_GET[$pname];
+		}
 		if (array_key_exists($pname, $_POST)) {
 			return $_POST[$pname];
 		}

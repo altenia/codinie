@@ -1,4 +1,4 @@
-<h3>Templates</h3>
+<h3>Templates <small><a href="<?php echo route_url($this, 'Admin', 'template_form'); ?>">Create new</a></small></h3>
 
 <form name="ListTemplates" action="<?php echo route_url($this, 'Admin', 'template_list'); ?>" method="get">
 <input type="text" name="pattern" value="<?php echo $this->pattern; ?>" /> <input name="submit" type="submit" value="Filter" />
@@ -14,7 +14,7 @@
 	<tbody>
 <?php foreach($this->templates as $template) { ?>
 		<tr>
-			<td><a href="<?php echo route_url($this, 'Admin', 'template_form', array('name' => $template['name'])); ?>"><?php echo $template['name']; ?></a></td>
+			<td><a href="<?php echo route_url($this, 'Admin', 'template_form', array('id' => $template['id'])); ?>"><?php echo $template['id']; ?></a></td>
 			<td></td>
 		</tr>
 <?php } ?>

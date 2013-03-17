@@ -49,19 +49,42 @@ class Controller_Admin extends LayoutController {
 		
 		$this->view->content = $content;
 		$this->renderView();
+		
     }
 	
 	public function template_form()
     {
 		$breadcrumb = array( array('Templates', 'templates') );
 		
+		$template = array();
+		$template['id'] = $this->getRequestParam('template_id');
+		$template['content'] = '';
+		$error_fields = array();
+		$is_new = false; // Is the form a new template or editing existing
+		if ($this->isMethodPost()) {
+			$template['content'] = $this->getRequestParam('template_content');
+			$error_fields = TemplateManager::instance()->validate($template);
+			if (empty($error_fields)) {
+				TemplateManager::instance()->save($template);
+			}
+			$this->redirect( route_url($this, 'Admin', 'index') );
+		} else {
+			$template['id'] = $this->getRequestParam('id');
+			//print_r($template['id']);
+			$is_new = empty($template['id']);
+			if ($template['id'] == null) {
+				$template['id'] = '';
+				$template['content'] = '';
+			} else {
+				$template['content'] = TemplateManager::instance()->get($template['id']);
+			}
+			
+		}
+		
 		$content = View::create('admin_template_form');
-		
-		$template_id = ifndef($_GET['name']);
-		$content->pattern = '';
-		$content->template_name = $filename;
-		$content->template_content = $this->read_file($filename);
-		
+		$content->is_new = $is_new;
+		$content->template = $template;
+		$content->error_fields = $error_fields;
 		$this->view->content = $content;
 		$this->renderView();
     }
@@ -71,17 +94,5 @@ class Controller_Admin extends LayoutController {
 		return get_files(CODE_TEMPLATE_PATH , self::TPL_FILE_SUFIX, $pattern);
 	}
 	
-	public function read_file($filename)
-    {
-		$file_path = CODE_TEMPLATE_PATH . $filename;
-		if (!file_exists($file_path)) {
-			return null; 
-		}
-
-		$fh = fopen($file_path, "r");
-		$content = fread($fh, filesize($file_path));
-		fclose($fh);
-
-		return $content;
-	}
+	
 }

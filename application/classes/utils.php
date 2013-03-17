@@ -29,6 +29,27 @@ function get_files($prefix, $suffix, $pattern = '*', $remove_suffix = true)
 }
 
 /**
+ * Save a string to file
+ */
+function save_to_file($file_path, $data)
+{
+	$fh = fopen($file_path, 'w');
+	fwrite($fh, $data);
+	fclose($fh);
+}
+
+/**
+ * Save a string to file
+ */
+function read_from_file($file_path)
+{
+	$fh = fopen($file_path, "r");
+	$content = fread($fh, filesize($file_path));
+	fclose($fh);
+	return $content;
+}
+
+/**
  * Returns true if keys exists in multidimensional array
  * E.g. 
  * $keys = array('a', 'b', 'c');
@@ -51,4 +72,12 @@ function array_key_exists_md($keys, $array_md)
 function to_bool($value)
 {
 	return filter_var($value, FILTER_VALIDATE_BOOLEAN);
+}
+
+/**
+ * Returns true if trim is empty
+ */
+function trim_empty($val)
+{
+	return (trim($val) == false);
 }
