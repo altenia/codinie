@@ -72,11 +72,11 @@
 	<div class="control-group">
 		<div class="controls">
 <?php foreach($this->templates as $template) { 
-	$checked_attr = array_key_exists_md( array('active-templates', $template['name']), $this->project_details) ? 'checked="checked"' : '';
+	$checked_attr = array_key_exists_md( array('active-templates', $template['id']), $this->project_details) ? 'checked="checked"' : '';
 ?>
 			<label class="checkbox">
-				<input type="checkbox" name="project.active-template[]" value="<?php echo $template['name']; ?>" <?php echo $checked_attr; ?> >
-				<?php echo $template['name']; ?>
+				<input type="checkbox" name="project.active-template[]" value="<?php echo $template['id']; ?>" <?php echo $checked_attr; ?> >
+				<?php echo $template['id']; ?>
 			</label>
 <?php } ?>
 		</div>

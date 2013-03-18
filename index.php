@@ -16,7 +16,7 @@ require(FRAMEWORK_PATH . 'KLogger.php');
  */
 
 // Obtains the controller and action names
-$controllerName = "Index";
+$controllerName = "Home";
 $actionName = "index";
 
 if(USE_PATH_INFO) {

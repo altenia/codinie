@@ -8,7 +8,6 @@ define('APP_TAGLINE', 'Speeding up the agility!');
 define('APP_VERSION', '0.5');
 
 define('CONTEXT_PATH', 'codini');
-//define('SYS_PATH', realpath('.') . DIRECTORY_SEPARATOR);
 define('SYS_PATH', dirname(__FILE__) . DIRECTORY_SEPARATOR);
 define('FRAMEWORK_PATH', SYS_PATH . 'framework/' );
 
