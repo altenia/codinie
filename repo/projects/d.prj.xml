@@ -3,15 +3,13 @@
 	<owner>Young Suk</owner>
 	<language>Java</language>
 	<description>d</description>
-	<last-modif>13/03/16-10:09:04</last-modif>
+	<last-modif>13/03/18-07:34:40</last-modif>
 	<data-source>
-		<type></type>
+		<type>MySqli</type>
 		<url>localhost</url>
 		<username>test</username>
 	</data-source>
 	<active-templates>
-		<template name="php_client_wf" />
-		<template name="php_dao_wf" />
 		<template name="php_model" />
 	</active-templates>
 	<params>
