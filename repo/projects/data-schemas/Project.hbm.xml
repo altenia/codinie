@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.seednia.module.core.project.dto.ProjectDto" table="Project" catalog="seednia">
+		<meta attribute="class-description">
+			Project information
+		</meta>
+		
+		<!-- Default fields (from AbstractRecord) {{ -->
+		<id name="sid" type="long">
+			<meta attribute="field-description">Unique (sequential) system ID</meta>
+			<column name="sid" />
+			<generator class="identity" />
+		</id>
+		
+		<property name="domainId" type="string">
+			<meta attribute="field-description">The ID of the domain that this record is context of</meta>
+			<column name="domainId" not-null="true" length="64" />
+		</property>
+		<many-to-one name="creatorDto" column="creatorSid" update="false" not-null="false" fetch="join"
+			class="com.seednia.module.core.user.dto.UserDto" >
+			<meta attribute="field-description">The creator of the record</meta>
+		</many-to-one>
+		<property name="createDt" type="java.util.Date" update="false" >
+			<meta attribute="field-description">The date this record was created</meta>
+			<column name="createDt" not-null="true" />
+		</property>
+		<property name="modifyCounter" type="int">
+			<meta attribute="field-description">Number of times modified</meta>
+			<column name="modifyCounter" not-null="false" />
+		</property>
+		<property name="lastModifiedDt" type="java.util.Date">
+			<meta attribute="field-description">Time stamp of the last modification of the record</meta>
+			<column name="lastModifiedDt" not-null="false" />
+		</property>
+		<!-- }} Default fields (from AbstractRecord) -->
+
+		<property name="uuid" type="string" update="false" >
+			<meta attribute="field-description">GUID (assigned by system)</meta>
+			<column name="uuid" not-null="true" length="128" unique="true" index="idx_uuid"/>
+		</property>
+		<property name="id" type="string">
+			<meta attribute="field-description">User id</meta>
+			<column name="id" length="64" not-null="true" unique="true"/>
+		</property>
+		<property name="name" type="string">
+			<meta attribute="field-description">Name of the project</meta>
+			<column name="name" length="255" not-null="false" />
+		</property>
+		
+		<many-to-one name="ownerDto" column="ownerSid" not-null="true" fetch="join" update="false" 
+			class="com.seednia.module.core.user.dto.UserDto" index="idx_name" >
+			<meta attribute="field-description">The owner of the project</meta>
+		</many-to-one>	
+		<many-to-one name="categoryDto" column="categorySid" not-null="true" fetch="join"
+			class="com.seednia.module.core.category.dto.CategoryDto" >
+			<meta attribute="field-description">Possible categories: Personal,Social,Art,Research,Engineering.</meta>
+		</many-to-one>
+		
+		<property name="goal" type="text">
+			<meta attribute="field-description">The main goal (what you want to achieve)</meta>
+			<column name="goal" not-null="true" />
+		</property>
+		<property name="description" type="text">
+			<meta attribute="field-description">Further description of the project</meta>
+			<column name="description" not-null="false" />
+		</property>
+		
+		<property name="successCriteria" type="text">
+			<meta attribute="field-description">What makes this successful? success measure</meta>
+			<column name="successCriteria" not-null="false" />
+		</property>
+		<property name="challenges" type="text">
+			<meta attribute="field-description">Known challenges</meta>
+			<column name="challenges" not-null="false" />
+		</property>
+		
+		<many-to-one name="profileImage" column="profileImageSid" fetch="join" update="false"
+			class="com.seednia.module.core.resource.dto.MediaDto" >
+			<meta attribute="field-description">The profile image</meta>
+		</many-to-one>
+		<property name="planStartDate" type="java.util.Date">
+			<meta attribute="field-description">thumbnail image width</meta>
+			<column name="planStartDate" not-null="true" />
+		</property>
+		<property name="actualStartDate" type="java.util.Date">
+			<meta attribute="field-description">thumbnail image width</meta>
+			<column name="actualStartDate" />
+		</property>
+		<property name="planEndDate" type="java.util.Date">
+			<meta attribute="field-description">THe date planned to end</meta>
+			<column name="planEndDate"  />
+		</property>
+		<property name="actualEndDate" type="java.util.Date">
+			<meta attribute="field-description">The date actually ended</meta>
+			<column name="actualEndDate"  />
+		</property>
+		<property name="lookingFor" type="int">
+			<meta attribute="field-description">Same as want to {0=network, 1=pursue goal, 2=mentor/adviser, 4=collaborate}</meta>
+			<column name="lookingFor" />
+		</property>
+		
+		<property name="status" type="int">
+			<meta attribute="field-description">Status: 0=idle, 1=open, 2=fixed, 3=completed, 4=dropped</meta>
+			<column name="status" not-null="true"  />
+		</property>
+		<property name="privacyLevel" type="java.lang.Integer">
+			<meta attribute="field-description">Visibility scope: 0=public, 1=domain, 2=friends,4=members</meta>
+			<column name="privacyLevel" />
+		</property>
+		
+		<property name="numCheers" type="int">
+			<meta attribute="field-description">Number of likes</meta>
+			<column name="numCheers"  />
+		</property>
+		<property name="sysStatus" type="int">
+			<meta attribute="field-description">System (store) status: 0=Active, -1=deleted, 1=archived</meta>
+			<column name="sysStatus"  />
+		</property>
+		
+		<bag name="taggingDtos" table="ProjectTagging" lazy="false" cascade="none" inverse="true" >
+			<key column="targetSid" />
+			<one-to-many class="com.seednia.module.core.project.dto.ProjectTaggingDto"  not-found="ignore" />
+		</bag>
+		
+		<bag name="requiredSkillTaggingDtos" table="RequiredSkillTagging" lazy="false" cascade="none" inverse="true" >
+			<key column="targetSid" />
+			<one-to-many class="com.seednia.module.core.project.dto.RequiredSkillTaggingDto"  not-found="ignore" />
+		</bag>
+		<property name="requiredSkillTagNamesCsv" type="text">
+			<meta attribute="field-description">Tag names in CSV</meta>
+			<column name="requiredSkillTagNamesCsv" />
+		</property>
+		
+		<bag name="memberDtos" table="ProjectMember" lazy="true" cascade="none" inverse="true" >
+			<key column="projectSid" />
+			<one-to-many class="com.seednia.module.core.project.dto.MemberDto"  not-found="ignore" />
+		</bag>
+		
+		<!-- Upon completion -->
+		<property name="successLevel" type="java.lang.Integer">
+			<meta attribute="field-description">SuccessLevel: 0=unrated, 1=unsuccessful, 2=could have been better, 3=successful, 4=highly successful</meta>
+			<column name="successLevel"  />
+		</property>
+		<property name="evaluationPositive" type="text">
+			<meta attribute="field-description">What was good?</meta>
+			<column name="evaluationPositive"  />
+		</property>
+		<property name="evaluationNegative" type="text">
+			<meta attribute="field-description">What need improvement?</meta>
+			<column name="evaluationNegative"  />
+		</property>
+		<property name="improvements" type="text">
+			<meta attribute="field-description">What would do you differently if you do it again?</meta>
+			<column name="improvements"  />
+		</property>
+		
+		<property name="paramsText" type="text">
+			<meta attribute="field-description">Additional (non-queryable) parameters in json format</meta>
+			<column name="paramsText" />
+		</property>
+	</class>
+	
+	<class name="com.seednia.module.core.project.dto.ProjectTaggingDto" table="ProjectTagging" catalog="seednia">
+		<meta attribute="class-description">
+			Tagging information: Association of Object and the tag
+		</meta>
+		
+		<!-- Default fields (from AbstractRecord) {{ -->
+		<id name="sid" type="long">
+			<meta attribute="field-description">Unique (sequential) system ID</meta>
+			<column name="sid" />
+			<generator class="identity" />
+		</id>
+		<natural-id>
+			<property name="targetSid" type="long">
+				<meta attribute="field-description">Tagged object SID (the taggable SID)</meta>
+				<column name="targetSid" not-null="true" />
+			</property>
+			<property name="targetType" type="string">
+				<meta attribute="field-description">Type of the tagged object (e.g.: Project, Post, File) </meta>
+				<column name="targetType" not-null="true" length="16" />
+			</property>
+			<many-to-one name="tagDto" column="tagSid" not-null="true" fetch="join"
+				class="com.seednia.module.core.tagging.dto.TagDto" >
+				<meta attribute="field-description">The project this Log belongs to</meta>
+			</many-to-one>
+		</natural-id>
+		
+		<many-to-one name="creatorDto" column="creatorSid" not-null="true" fetch="join"
+			class="com.seednia.module.core.user.dto.UserDto" >
+			<meta attribute="field-description">The creator of the record</meta>
+		</many-to-one>
+		<property name="createDt" type="java.util.Date">
+			<meta attribute="field-description">The date this record was created</meta>
+			<column name="createDt" not-null="true" />
+		</property>
+		<property name="modifyCounter" type="int">
+			<meta attribute="field-description">Number of times modified</meta>
+			<column name="modifyCounter" not-null="false" />
+		</property>
+		<property name="lastModifiedDt" type="java.util.Date">
+			<meta attribute="field-description">Time stamp of the last modification of the record</meta>
+			<column name="lastModifiedDt" not-null="false" />
+		</property>
+		<!-- }} Default fields (from AbstractRecord) -->
+
+		<property name="weight" type="int">
+			<meta attribute="field-description">Weight of this tag</meta>
+			<column name="weight" default="1" />
+		</property>
+	</class>
+	
+	<class name="com.seednia.module.core.project.dto.RequiredSkillTaggingDto" table="ProjectRequiredSkills" catalog="seednia">
+		<meta attribute="class-description">
+			Taggings of required skills
+		</meta>
+		
+		<!-- Default fields (from AbstractRecord) {{ -->
+		<id name="sid" type="long">
+			<meta attribute="field-description">Unique (sequential) system ID</meta>
+			<column name="sid" />
+			<generator class="identity" />
+		</id>
+		<natural-id>
+			<property name="targetSid" type="long">
+				<meta attribute="field-description">Tagged object SID (the taggable SID)</meta>
+				<column name="targetSid" not-null="true" />
+			</property>
+			<property name="targetType" type="string">
+				<meta attribute="field-description">Type of the tagged object (ProjectRequiredSkills) </meta>
+				<column name="targetType" not-null="true" length="16" />
+			</property>
+			<many-to-one name="tagDto" column="tagSid" not-null="true" fetch="join"
+				class="com.seednia.module.core.tagging.dto.TagDto" >
+				<meta attribute="field-description">The project this Log belongs to</meta>
+			</many-to-one>
+		</natural-id>
+		
+		<many-to-one name="creatorDto" column="creatorSid" not-null="true" fetch="join"
+			class="com.seednia.module.core.user.dto.UserDto" >
+			<meta attribute="field-description">The creator of the record</meta>
+		</many-to-one>
+		<property name="createDt" type="java.util.Date">
+			<meta attribute="field-description">The date this record was created</meta>
+			<column name="createDt" not-null="true" />
+		</property>
+		<property name="modifyCounter" type="int">
+			<meta attribute="field-description">Number of times modified</meta>
+			<column name="modifyCounter" not-null="false" />
+		</property>
+		<property name="lastModifiedDt" type="java.util.Date">
+			<meta attribute="field-description">Time stamp of the last modification of the record</meta>
+			<column name="lastModifiedDt" not-null="false" />
+		</property>
+		<!-- }} Default fields (from AbstractRecord) -->
+
+		<property name="weight" type="int">
+			<meta attribute="field-description">Weight of this tag</meta>
+			<column name="weight" default="1" />
+		</property>
+	</class>
+	
+	<class name="com.seednia.module.core.project.dto.MemberDto" table="ProjectMember" catalog="seednia"
+		polymorphism="explicit">
+		<meta attribute="class-description">
+			Project Member. There must be at least one member (the creator)
+		</meta>
+		
+		<!-- Default fields (from AbstractRecord) {{ -->
+		<id name="sid" type="long">
+			<meta attribute="field-description">Unique (sequential) system ID</meta>
+			<column name="sid" />
+			<generator class="identity" />
+		</id>
+		
+		<many-to-one name="creatorDto" column="creatorSid" not-null="true" fetch="join"
+			class="com.seednia.module.core.user.dto.UserDto" >
+			<meta attribute="field-description">The one who created this membership</meta>
+		</many-to-one>
+		<property name="createDt" type="java.util.Date">
+			<meta attribute="field-description">The date this record was created</meta>
+			<column name="createDt" not-null="true" />
+		</property>
+		<property name="modifyCounter" type="int">
+			<meta attribute="field-description">Number of times modified</meta>
+			<column name="modifyCounter" not-null="false" />
+		</property>
+		<property name="lastModifiedDt" type="java.util.Date">
+			<meta attribute="field-description">Time stamp of the last modification of the record</meta>
+			<column name="lastModifiedDt" not-null="false" />
+		</property>
+		<!-- }} Default fields (from AbstractRecord) -->
+
+		<many-to-one name="projectDto" column="projectSid" not-null="true" fetch="join"
+			class="com.seednia.module.core.project.dto.ProjectDto" index="idx_projectSid" >
+			<meta attribute="field-description">The user of for the member</meta>
+		</many-to-one>
+		<many-to-one name="userDto" column="userSid" not-null="true" fetch="join"
+			class="com.seednia.module.core.user.dto.UserDto" index="idx_userSid" >
+			<meta attribute="field-description">The user of for the member</meta>
+		</many-to-one>
+		
+		<property name="status" type="int">
+			<meta attribute="field-description">Status: 0:pending, 1:active, -1 disabled</meta>
+			<column name="status" not-null="true" default="0"/>
+		</property>
+		<property name="type" type="string">
+			<meta attribute="field-description">type (fixed): owner, mentor, collaborator. It defines access control (privileges)</meta>
+			<column name="type" not-null="true" length="24"  />
+		</property>
+		<property name="role" type="string">
+			<meta attribute="field-description">Project specific roles: project manager, process manager, etc.</meta>
+			<column name="role" length="127"  />
+		</property>
+		
+		<property name="timeCommitment" type="int">
+			<meta attribute="field-description">Hours commitment per week</meta>
+			<column name="timeCommitment" not-null="true"  />
+		</property>
+		<property name="description" type="string">
+			<meta attribute="field-description">Description</meta>
+			<column name="description" length="255"  />
+		</property>
+
+		<property name="lastActivityDt" type="java.util.Date">
+			<meta attribute="field-description">Time stamp of the last activity in the project</meta>
+			<column name="lastActivityDt" />
+		</property>
+	
+		<property name="paramsText" type="string">
+			<meta attribute="field-description">Additional (non-queryable) parameters in json format</meta>
+			<column name="paramsText" length="255"  />
+		</property>
+		
+	</class>
+	
+	<class name="com.seednia.module.core.project.dto.MemberRequestDto" table="ProjectMemberRequest" catalog="seednia"
+		polymorphism="explicit">
+		<meta attribute="class-description">
+			Request for Membership. Same structure as Member except that the user can be null (non-user)
+		</meta>
+		
+		<!-- Default fields (from AbstractRecord) {{ -->
+		<id name="sid" type="long">
+			<meta attribute="field-description">Unique (sequential) system ID</meta>
+			<column name="sid" />
+			<generator class="identity" />
+		</id>
+		
+		<many-to-one name="creatorDto" column="creatorSid" not-null="true" fetch="join"
+			class="com.seednia.module.core.user.dto.UserDto" >
+			<meta attribute="field-description">The one who created this membership</meta>
+		</many-to-one>
+		<property name="createDt" type="java.util.Date">
+			<meta attribute="field-description">The date this record was created</meta>
+			<column name="createDt" not-null="true" />
+		</property>
+		<property name="modifyCounter" type="int">
+			<meta attribute="field-description">Number of times modified</meta>
+			<column name="modifyCounter" not-null="false" />
+		</property>
+		<property name="lastModifiedDt" type="java.util.Date">
+			<meta attribute="field-description">Time stamp of the last modification of the record</meta>
+			<column name="lastModifiedDt" not-null="false" />
+		</property>
+		<!-- }} Default fields (from AbstractRecord) -->
+
+		<property name="uuid" type="string" update="false" >
+			<meta attribute="field-description">GUID (assigned by system)</meta>
+			<column name="uuid" not-null="true" length="128" unique="true" index="idx_uuid"/>
+		</property>
+		<many-to-one name="projectDto" column="projectSid" not-null="true" fetch="join"
+			class="com.seednia.module.core.project.dto.ProjectDto" index="idx_projectSid" >
+			<meta attribute="field-description">The user of for the member</meta>
+		</many-to-one>
+		<many-to-one name="userDto" column="userSid" not-null="true" fetch="join"
+			class="com.seednia.module.core.user.dto.UserDto" index="idx_userSid" >
+			<meta attribute="field-description">The user of for the member</meta>
+		</many-to-one>
+		
+		<property name="status" type="int">
+			<meta attribute="field-description">Status: 0:pending, 1:active, -1 disabled</meta>
+			<column name="status" not-null="true" default="0"/>
+		</property>
+		<property name="type" type="string">
+			<meta attribute="field-description">type (fixed): owner, mentor, collaborator. It defines access control</meta>
+			<column name="type" not-null="true" length="24"  />
+		</property>
+		<property name="role" type="string">
+			<meta attribute="field-description">Project specific roles: project manager, process manager, etc.</meta>
+			<column name="role" length="127"  />
+		</property>
+		
+		<property name="timeCommitment" type="int">
+			<meta attribute="field-description">Hours commitment per week</meta>
+			<column name="timeCommitment" not-null="true"  />
+		</property>
+		<property name="description" type="string">
+			<meta attribute="field-description">Description</meta>
+			<column name="description" length="255"  />
+		</property>
+
+		<property name="declineReason" type="text">
+			<meta attribute="field-description">reason for decline </meta>
+			<column name="declineReason" />
+		</property>
+	
+		<property name="paramsText" type="string">
+			<meta attribute="field-description">Additional (non-queryable) parameters in json format</meta>
+			<column name="paramsText" length="255"  />
+		</property>
+		
+	</class>
+	
+</hibernate-mapping>

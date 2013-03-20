@@ -2,7 +2,7 @@
 /**
  * This file is part of <?php echo $params['name']; ?>.
  *
- * @author    <?php echo $params['owner']; ?> <yourmail@wayfair.com>
+ * @author    <?php echo $params['owner']; ?> <yourmail@mail.com>
  * @version   0.1
  */
 <?php foreach($schema as $structure) { ?> 

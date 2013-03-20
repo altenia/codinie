@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.seednia.module.core.user.dto.UserDto" table="User" catalog="seednia">
+		<meta attribute="class-description">
+			User information
+		</meta>
+		
+		<!-- Default fields (from AbstractRecord) {{ -->
+		<id name="sid" type="long">
+			<meta attribute="field-description">Unique (sequential) system ID</meta>
+			<column name="sid" />
+			<generator class="identity" />
+		</id>
+		
+		<property name="domainId" type="string">
+			<meta attribute="field-description">The ID of the domain that this record is context of</meta>
+			<column name="domainId" not-null="true" length="64" />
+		</property>
+		<property name="createDt" type="java.util.Date">
+			<meta attribute="field-description">The date this record was created</meta>
+			<column name="createDt" not-null="true" />
+		</property>
+		<property name="modifyCounter" type="int">
+			<meta attribute="field-description">Number of times modified</meta>
+			<column name="modifyCounter" />
+		</property>
+		<property name="lastModifiedDt" type="java.util.Date">
+			<meta attribute="field-description">Time stamp of the last modification of the record</meta>
+			<column name="lastModifiedDt" />
+		</property>
+		<!-- }} Default fields (from AbstractRecord) -->
+
+		<property name="uuid" type="string" update="false" >
+			<meta attribute="field-description">GUID (assigned by system)</meta>
+			<column name="uuid" not-null="true" length="128" unique="true" index="idx_uuid"/>
+		</property>
+		<property name="originalDomainId" type="string">
+			<meta attribute="field-description">The domain where the user originally registered</meta>
+			<column name="originalDomainId" not-null="true" length="64" />
+		</property>
+		
+		<property name="id" type="string">
+			<meta attribute="field-description">User id</meta>
+			<column name="id" not-null="true" length="64" unique="true"/>
+		</property>
+		<property name="password" type="string">
+			<meta attribute="field-description">Password</meta>
+			<column name="password" not-null="true" length="64" />
+		</property>
+		<property name="firstName" type="string">
+			<meta attribute="field-description">First name</meta>
+			<column name="firstName" not-null="true" length="255" />
+		</property>
+		<property name="middleName" type="string">
+			<meta attribute="field-description">First name</meta>
+			<column name="middleName" length="255" />
+		</property>
+		<property name="lastName" type="string">
+			<meta attribute="field-description">Last Name</meta>
+			<column name="lastName" not-null="true" length="255" />
+		</property>
+		<property name="lcName" type="string">
+			<meta attribute="field-description">Name in local language</meta>
+			<column name="lcName" length="255" />
+		</property>
+		<property name="displayName" type="string">
+			<meta attribute="field-description">Display name (blank means same as Last+First)</meta>
+			<column name="displayName" length="255" />
+		</property>
+
+		<property name="bdate" type="java.util.Date">
+			<meta attribute="field-description">Birth date</meta>
+			<column name="bdate" />
+		</property>
+		<property name="phone" type="string">
+			<meta attribute="field-description">Phone number</meta>
+			<column name="phone" length="32" />
+		</property>
+		<property name="email" type="string">
+			<meta attribute="field-description">Primary email address</meta>
+			<column name="email" length="64" unique="true" not-null="true" />
+		</property>
+		<property name="permalink" type="string">
+			<meta attribute="field-description">used at www.seednia.com/[permalink]</meta>
+			<column name="permalink" not-null="false" length="64" unique="true"/>
+		</property>
+		<property name="activationCode" type="string">
+			<meta attribute="field-description">Activation code</meta>
+			<column name="activationCode" length="64" />
+		</property>
+		<property name="securityQuestion" type="string">
+			<meta attribute="field-description">Security question</meta>
+			<column name="securityQuestion" length="255" />
+		</property>
+		<property name="securityAnswer" type="string">
+			<meta attribute="field-description">Security anser</meta>
+			<column name="securityAnswer" length="255" />
+		</property>
+		<property name="loginFailCounter" type="int">
+			<meta attribute="field-description">Login fail counter</meta>
+			<column name="loginFailCounter"  />
+		</property>
+		<property name="status" type="int">
+			<meta attribute="field-description">Status of the user: -1=disabled, 0=signedup, 1=activated, 2=basic, 3=advanced</meta>
+			<column name="status" default="0" />
+		</property>
+
+		<property name="defaultLangCd" type="string">
+			<meta attribute="field-description">Language code</meta>
+			<column name="defaultLangCd" length="3" />
+		</property>
+		<property name="timezone" type="string">
+			<meta attribute="field-description">Time zone</meta>
+			<column name="timezone" length="32" />
+		</property>
+		
+		<many-to-one name="profileImage" column="profileImageSid" fetch="join" update="false"
+			class="com.seednia.module.core.resource.dto.MediaDto" >
+			<meta attribute="field-description">The profile image</meta>
+		</many-to-one>
+		
+		<property name="expiryDt" type="java.util.Date">
+			<meta attribute="field-description">Expiration date of this use</meta>
+			<column name="expiryDt"  />
+		</property>
+
+		<property name="activeProjectSid" type="java.lang.Long">
+			<meta attribute="field-description">Currently active Project</meta>
+			<column name="activeProjectSid" />
+		</property>
+		<property name="type" type="string">
+			<meta attribute="field-description">possible values: hostadmin, domainadmin, basic. It defines access control (privileges)</meta>
+			<column name="type" />
+		</property>
+		<property name="paramsText" type="text">
+			<meta attribute="field-description">Additional (non-queryable) parameters in json format</meta>
+			<column name="paramsText" />
+		</property>
+	</class>
+</hibernate-mapping>

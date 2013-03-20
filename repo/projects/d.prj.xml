@@ -1,16 +1,16 @@
 <project>
-	<name>Hello world</name>
+	<name>Quantilize</name>
 	<owner>Young Suk</owner>
-	<language>Java</language>
-	<description>d</description>
-	<last-modif>13/03/18-07:34:40</last-modif>
+	<language>Scala</language>
+	<description>Time Logger</description>
+	<last-modif>13/03/19-07:54:27</last-modif>
 	<data-source>
-		<type>MySqli</type>
-		<url>localhost</url>
+		<type>Hbm</type>
+		<url>C:\appservers\webapps\codini\repo\projects\data-schemas</url>
 		<username>test</username>
 	</data-source>
 	<active-templates>
-		<template name="php_model" />
+		<template name="db_posgresql_ddl" />
 	</active-templates>
 	<params>
 		<param name="prefix" value="Test" />

@@ -11,6 +11,7 @@ abstract class Ds_Introspector
 		'blob' => 'blob', 
 		'bool' => 'boolean', 
 		'boolean' => 'boolean', 
+		'clob' => 'text', 
 		'char' => 'char', 
 		'date' => 'date', 
 		'datetime' => 'datetime', 
@@ -20,33 +21,57 @@ abstract class Ds_Introspector
 		'float' => 'float', 
 		'int' => 'int', 
 		'long' => 'long', 
-		'longblob' => 'string', 
-		'longtext' => 'string', 
+		'longblob' => 'text', 
+		'longtext' => 'text', 
 		'mediumblob' => 'blob', 
 		'mediumint' => 'int', 
-		'mediumtext' => 'string', 
+		'mediumtext' => 'text', 
 		'numeric' => 'double', 
 		'real' => 'double', 
 		'smallint' => 'short', 
-		'text' => 'string', 
+		'text' => 'text', 
 		'time' => 'time', 
 		'timestamp' => 'timestamp', 
 		'tinyblob' => 'blob', 
 		'tinyint' => 'short', 
-		'tinytext' => 'string', 
+		'tinytext' => 'text', 
 		'varchar' => 'string'
 		);
 
 	protected $connection;
 	
-	protected function get_type_mapping($type_name)
+	/**
+	 * Sets (overrides)
+	 * type mapping
+	 */
+	protected function set_type_mapping($type_name, $canonical_type)
+	{
+		$this->type_mapping[$type_name] = $canonical_type;
+	}
+	
+	/**
+	 * @param $type_mappings associative array of mappings
+	 */
+	protected function set_type_mappings($type_mappings)
+	{
+		$this->type_mapping = array_merge($this->type_mapping, $type_mappings);
+	}
+	
+	/**
+	 * Returns the canonical type
+	 */
+	protected function get_type_mapping($type_name, $preserve_case = false)
 	{
 		$openParenPos = strpos($type_name, '(');
+		$type_name = (string)$type_name;
 		if ($openParenPos > 0) {
 			$type_name = substr($type_name, 0, $openParenPos);
 		}
-		$type_name = strtolower($type_name);
-		if (array_key_exists($type_name, $this->type_mapping)) {
+		if (!$preserve_case) {
+			$type_name = strtolower($type_name);
+		}
+		echo "typename:" . $type_name;
+		if (array_key_exists( $type_name, $this->type_mapping)) {
 			return $this->type_mapping[$type_name];
 		}
 		return $type_name;

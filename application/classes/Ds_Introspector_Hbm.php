@@ -8,6 +8,21 @@ class Ds_Introspector_Hbm extends Ds_Introspector
 {
 	function __construct() 
 	{
+		$type_mapping = array(
+			'java.math.BigDecimal' => 'decimal', 
+			'java.lang.Boolean' => 'boolean', 
+			'java.lang.String' => 'string', 
+			'java.util.Date' => 'datetime', 
+			'java.lang.Double' => 'double', 
+			'java.lang.Float' => 'float', 
+			'java.lang.Integer' => 'int', 
+			'java.lang.Long' => 'long', 
+			'java.lang.Short' => 'short',
+			'java.sql.Date' => 'datetime', 
+			'java.sql.Timestamp' => 'timestamp', 
+			'java.sql.Clob' => 'clob', 
+		);
+		$this->set_type_mappings($type_mapping);
 	}
 
 	function create_connection($url, $user, $password, $schema_name)
@@ -29,6 +44,7 @@ class Ds_Introspector_Hbm extends Ds_Introspector
 		} else {
 			$name_pattern .= $name_pattern . '.hbm.xml';
 		}
+		print_r($this->url . $name_pattern);
 		$files = glob($this->url . $name_pattern);
 				
 		$retval = null;
@@ -86,7 +102,7 @@ class Ds_Introspector_Hbm extends Ds_Introspector
 	{
 		$prop_attrs = $field->attributes();
 		$field_info = &$data_struct->add_field_description( (string)$prop_attrs->name
-				, (string)$this->get_type_mapping($prop_attrs->type)
+				, (string)$this->get_type_mapping($prop_attrs->type, true)
 				, $this->is_nullable($field), $this->is_key($field), (string)$this->default_val($field)
 			);
 		$field_info->is_identity = $this->is_identity($field);
