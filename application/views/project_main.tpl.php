@@ -19,7 +19,7 @@
 	<div class="control-group">
 		<label class="control-label" for="project.data-source.username">User</label>
 		<div class="controls">
-			<input type="text" name="project.data-source.username" value="<?php echo ifndef('user', $this->project_details['data-source'], 'test'); ?>">
+			<input type="text" name="project.data-source.username" value="<?php echo ifndef('username', $this->project_details['data-source'], 'test'); ?>">
 		</div>
 	</div>
 	<div class="control-group">

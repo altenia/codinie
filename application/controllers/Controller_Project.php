@@ -280,7 +280,6 @@ class Controller_Project extends LayoutController {
 	 */
 	public function get_project_details_from_post($post)
 	{
-		//print_r($post);
 		$project_details = array();
 		$project_details['id'] = $post['project' . self::MEMBER_SEPARATOR . 'id'];
 		$project_details['name'] = $post['project' . self::MEMBER_SEPARATOR . 'name'];
@@ -291,6 +290,7 @@ class Controller_Project extends LayoutController {
 		$project_details['data-source']['type'] = $post['project' . self::MEMBER_SEPARATOR . 'data-source' . self::MEMBER_SEPARATOR . 'type'];
 		$project_details['data-source']['url'] = $post['project' . self::MEMBER_SEPARATOR . 'data-source' . self::MEMBER_SEPARATOR . 'url'];
 		$project_details['data-source']['username'] = $post['project' . self::MEMBER_SEPARATOR . 'data-source' . self::MEMBER_SEPARATOR . 'username'];
+		$project_details['data-source']['db_name'] = $post['project' . self::MEMBER_SEPARATOR . 'data-source' . self::MEMBER_SEPARATOR . 'db_name'];
 
 		if (array_key_exists('project' . self::MEMBER_SEPARATOR . 'active-template', $post)) {
 			$project_details['active-templates'] = array();
@@ -307,6 +307,7 @@ class Controller_Project extends LayoutController {
 				$project_details['params'][$param_key_val[0]] = $param_key_val[1];
 			}
 		}
+		
 		return $project_details;
 	}
 	

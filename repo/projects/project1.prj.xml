@@ -1,19 +1,20 @@
 <project>
-	<name>My First Project</name>
+	<name>Posgres Test</name>
 	<owner>Young Suk Ahn</owner>
 	<language>Java</language>
 	<description></description>
-	<last-modif>13/03/18-07:34:25</last-modif>
+	<last-modif>13/03/21-08:55:12</last-modif>
 	<data-source>
-		<type></type>
+		<type>Postgre</type>
 		<url>localhost</url>
 		<username>test</username>
+		<db_name>quantilize</db_name>
 	</data-source>
 	<active-templates>
-		<template name="php_model" />
+		<template name="db_posgresql_ddl" />
 	</active-templates>
 	<params>
-		<param name="prefix" value="Test" />
+		<param name="prefix" value="Test                " />
 		<param name="suffix" value="Ex" />
 	</params>
 </project>

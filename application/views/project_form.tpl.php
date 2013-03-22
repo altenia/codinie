@@ -44,7 +44,7 @@
 	<div class="control-group">
 		<label class="control-label" for="project.data-source.type">DS Type</label>
 		<div class="controls">
-			<?php echo generate_select_html('project.data-source.type', $this->ref_ds_types, 0, 0, ifndef('ds_type', $this->project_details['data-source'], '')); ?>
+			<?php echo generate_select_html('project.data-source.type', $this->ref_ds_types, 0, 0, ifndef('type', $this->project_details['data-source'], '')); ?>
 		</div>
 	</div>
 		
@@ -57,7 +57,7 @@
 	<div class="control-group">
 		<label class="control-label" for="project.data-source.username">User</label>
 		<div class="controls">
-			<input type="text" name="project.data-source.username" value="<?php echo ifndef('user', $this->project_details['data-source'], 'test'); ?>">
+			<input type="text" name="project.data-source.username" value="<?php echo ifndef('username', $this->project_details['data-source'], 'test'); ?>">
 		</div>
 	</div>
 	<div class="control-group">

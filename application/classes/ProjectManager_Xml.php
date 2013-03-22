@@ -15,6 +15,7 @@ require_once CLASSES_PATH . 'utils.php';
 		<type></type>
 		<url></url>
 		<username></username>
+		<db_name></db_name>
 	</data-source>
 	
 	<active-templates>
@@ -32,17 +33,18 @@ class ProjectManager_Xml extends ProjectManager
 {
 	const FILE_SUFFIX = '.prj.xml';
 	
-	public function save($prj_details) 
+	public function save($project_details) 
 	{
-		if (empty($prj_details)) {
+		if (empty($project_details)) {
 			return false;
 		}
-		$error_fields = $this->validate($prj_details);
+		$error_fields = $this->validate($project_details);
 		
 		if (empty($error_fields)) {
-			$project_id = $prj_details['id'];
-			$this->projects[$prj_details['id']] = $prj_details;
-			$xml = $this->to_xml($prj_details);
+			$project_id = $project_details['id'];
+			$this->projects[$project_details['id']] = $project_details;
+			$xml = $this->to_xml($project_details);
+			//print_r($xml); die();
 			// save xml
 			$file_path = PROJECTS_PATH . $project_id . self::FILE_SUFFIX;
 			$fh = fopen($file_path, 'w');
@@ -113,6 +115,7 @@ class ProjectManager_Xml extends ProjectManager
 		$project_details['data-source']['type'] = (string)$project_xml->{'data-source'}->type;
 		$project_details['data-source']['url'] = (string)$project_xml->{'data-source'}->url;
 		$project_details['data-source']['username'] = (string)$project_xml->{'data-source'}->username;
+		$project_details['data-source']['db_name'] = (string)$project_xml->{'data-source'}->db_name;
 		
 		//print_r($project_xml->{'active-templates'}); die();
 		if (isset($project_xml->{'active-templates'})) {
@@ -155,6 +158,7 @@ class ProjectManager_Xml extends ProjectManager
 		$out_xml .= "\t\t<type>" . $project_details['data-source']['type'] . "</type>\n";
 		$out_xml .= "\t\t<url>" . $project_details['data-source']['url'] . "</url>\n";
 		$out_xml .= "\t\t<username>" . $project_details['data-source']['username'] . "</username>\n";
+		$out_xml .= "\t\t<db_name>" . $project_details['data-source']['db_name'] . "</db_name>\n";
 		$out_xml .= "\t</data-source>\n";
 	
 		//print_r($project_details); die();
