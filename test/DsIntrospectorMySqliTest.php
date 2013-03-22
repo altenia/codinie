@@ -21,13 +21,12 @@ class DsIntrospectorMySqli_Test extends PHPUnit_Framework_TestCase
 		
 		//$this->assertTrue($tables != null); 
 		
-		print "TABLES: ";
+		//print "TABLES: ";
 		//print_r($tables);
 		
 		$table_meta = $db_intros->get_table_metadata('test_table');
 		
-		print "DESC test_table: ";
-		print_r($table_meta);
+		//print_r($table_meta);
 		
 		$serialize = new DataStructure_Serializer_Xml();
 		$xml = $serialize->serialize($table_meta);

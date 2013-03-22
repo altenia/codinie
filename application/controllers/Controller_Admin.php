@@ -45,7 +45,7 @@ class Controller_Admin extends LayoutController {
 
 		$content->pattern = $pattern;
 		$content->templates = TemplateManager::instance()->get_list($pattern);
-		print_r($content->templates);
+		//print_r($content->templates);
 		
 		$this->view->content = $content;
 		$this->renderView();

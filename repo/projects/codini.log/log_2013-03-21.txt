@@ -1,0 +1,5 @@
+2013-03-21 20:20:59 - INFO --> Project [project1]: Code generated with template [php_model].
+2013-03-21 20:21:20 - INFO --> Project [project1]: Code generated with template [php_model].
+2013-03-21 20:21:37 - INFO --> Project [project1]: Code generated with template [php_model].
+2013-03-21 20:25:06 - INFO --> Project [project1]: Code generated with template [php_model].
+2013-03-21 20:26:10 - INFO --> Project [project1]: Code generated with template [php_model].

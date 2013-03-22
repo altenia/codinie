@@ -3,10 +3,10 @@
 	<owner>Young Suk</owner>
 	<language>Scala</language>
 	<description>Time Logger</description>
-	<last-modif>13/03/19-07:54:27</last-modif>
+	<last-modif>13/03/19-08:47:23</last-modif>
 	<data-source>
 		<type>Hbm</type>
-		<url>C:\appservers\webapps\codini\repo\projects\data-schemas</url>
+		<url>C:\appservers\webapps\codini\repo\projects\data-schemas\</url>
 		<username>test</username>
 	</data-source>
 	<active-templates>

@@ -137,7 +137,7 @@ class ProjectManager_Xml extends ProjectManager
 	 */
 	public function to_xml($project_details)
 	{
-		print_r($project_details);
+		//print_r($project_details);
 		$out_xml = "<project>\n";
 		$out_xml .= "\t<name>".$project_details['name'] . "</name>\n";
 		if (array_key_exists('owner', $project_details)) 

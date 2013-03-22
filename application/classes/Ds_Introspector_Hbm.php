@@ -44,7 +44,7 @@ class Ds_Introspector_Hbm extends Ds_Introspector
 		} else {
 			$name_pattern .= $name_pattern . '.hbm.xml';
 		}
-		print_r($this->url . $name_pattern);
+		//print_r($this->url . $name_pattern);
 		$files = glob($this->url . $name_pattern);
 				
 		$retval = null;

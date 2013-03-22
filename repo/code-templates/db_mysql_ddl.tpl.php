@@ -32,13 +32,13 @@ function to_db_type($type)
 		'clob' => 'CLOB', 
 		'char' => 'CHAR', 
 		'date' => 'DATE', 
-		'datetime' => 'TIMESTAMP', 
+		'datetime' => 'DATETIME', 
 		'decimal' => 'DECIMAL', 
 		'double' => 'DOUBLE', 
 		'enum' => 'ENUM', 
 		'float' => 'FLOAT', 
 		'int' => 'INT', 
-		'long' => 'BIGINT', 
+		'long' => 'LONG', 
 		'string' => 'VARCHAR', 
 		'short' => 'SHORT', 
 		'text' => 'TEXT', 
@@ -54,11 +54,11 @@ function modifiers($field_descr)
 	if (!empty($field_descr->max_length)) {
 		$modifiers = '(' . $field_descr->max_length . ')';
 	}
-	if (to_bool($field_descr->is_identity)) {
-		$modifiers .= ' SERIAL';
-	}
 	if (!$field_descr->is_nullable) {
 		$modifiers .= ' NOT NULL';
+	}
+	if (to_bool($field_descr->is_identity)) {
+		$modifiers .= ' AUTO_INCREMENT';
 	}
 	if (!empty($field_descr->default_val)) {
 		$modifiers .= ' DEFAULT \'' . $field_descr->default_val . '\'';

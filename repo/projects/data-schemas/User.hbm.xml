@@ -134,7 +134,7 @@
 		</property>
 		<property name="type" type="string">
 			<meta attribute="field-description">possible values: hostadmin, domainadmin, basic. It defines access control (privileges)</meta>
-			<column name="type" />
+			<column name="type" length="16" />
 		</property>
 		<property name="paramsText" type="text">
 			<meta attribute="field-description">Additional (non-queryable) parameters in json format</meta>

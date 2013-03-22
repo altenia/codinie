@@ -70,7 +70,7 @@ abstract class Ds_Introspector
 		if (!$preserve_case) {
 			$type_name = strtolower($type_name);
 		}
-		echo "typename:" . $type_name;
+
 		if (array_key_exists( $type_name, $this->type_mapping)) {
 			return $this->type_mapping[$type_name];
 		}
