@@ -3,14 +3,19 @@
 	<owner>Young Suk</owner>
 	<language>Scala</language>
 	<description>Time Logger</description>
-	<last-modif>13/03/19-08:47:23</last-modif>
+	<codegen-dest></codegen-dest>
+	<last-modif>13/03/22-09:50:23</last-modif>
 	<data-source>
 		<type>Hbm</type>
 		<url>C:\appservers\webapps\codini\repo\projects\data-schemas\</url>
 		<username>test</username>
+		<db_name></db_name>
 	</data-source>
 	<active-templates>
+		<template name="db_mysql_ddl" />
 		<template name="db_posgresql_ddl" />
+		<template name="php_dao" />
+		<template name="php_model" />
 	</active-templates>
 	<params>
 		<param name="prefix" value="Test" />

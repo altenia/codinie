@@ -192,16 +192,17 @@ class Controller_Project extends LayoutController {
 		$ds_introspector = $this->get_ds_introspector($conn_details);
 		$schema = $ds_introspector->get_schema($table);
 		
-		$serialize = new DataStructure_Serializer_Xml();
-		$content->schema_xml = $serialize->serialize($schema);
+		$serializer = new DataStructure_Serializer_Xml();
+		$content->schema_xml = $serializer->serialize($schema);
 
 		$code_generator = new CodeGen_PhpTemplate(CODE_TEMPLATE_PATH);
 
 		$generated_code = array();
 		foreach($curr_project['active-templates'] as $active_template => $active) {
 			if ($active) {
+				$template_details = TemplateManager::instance()->get($active_template);
 				$generated_code[$active_template] 
-					= $code_generator->generate($active_template . TemplateManager::TPL_FILE_SUFIX, $schema, $curr_project);
+					= $code_generator->generate($template_details, $schema, $curr_project);
 				
 				$this->get_logger()->logInfo('Project [' . $curr_project['id'] . ']: Code generated with template [' . $active_template . '].');
 			}
@@ -285,6 +286,7 @@ class Controller_Project extends LayoutController {
 		$project_details['name'] = $post['project' . self::MEMBER_SEPARATOR . 'name'];
 		$project_details['owner'] = $post['project' . self::MEMBER_SEPARATOR . 'owner'];
 		$project_details['language'] = $post['project' . self::MEMBER_SEPARATOR . 'language'];
+		$project_details['codegen-dest'] = $post['project' . self::MEMBER_SEPARATOR . 'codegen-dest'];
 		$project_details['description'] = $post['project' . self::MEMBER_SEPARATOR . 'description'];
 		$project_details['description'] = trim($project_details['description']);
 		$project_details['data-source']['type'] = $post['project' . self::MEMBER_SEPARATOR . 'data-source' . self::MEMBER_SEPARATOR . 'type'];

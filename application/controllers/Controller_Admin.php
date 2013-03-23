@@ -76,7 +76,8 @@ class Controller_Admin extends LayoutController {
 				$template['id'] = '';
 				$template['content'] = '';
 			} else {
-				$template['content'] = TemplateManager::instance()->get($template['id']);
+				$template_details = TemplateManager::instance()->get($template['id']);
+				$template['content'] = $template_details['content'];
 			}
 			
 		}

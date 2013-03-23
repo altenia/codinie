@@ -1,11 +1,16 @@
 <project>
-	<name>test</name>
+	<name>Hbm Test</name>
+	<owner>Young Suk</owner>
 	<language></language>
-	<description>						</description>
-	<last-modif>13/03/15-09:42:59</last-modif>
+	<description></description>
+	<last-modif>13/03/21-08:57:34</last-modif>
 	<data-source>
-		<type>MySqli</type>
-		<url>test</url>
+		<type>Hbm</type>
+		<url>C:\appservers\webapps\codini\repo\projects\data-schemas\</url>
 		<username>test</username>
+		<db_name></db_name>
 	</data-source>
+	<active-templates>
+		<template name="db_posgresql_ddl" />
+	</active-templates>
 </project>

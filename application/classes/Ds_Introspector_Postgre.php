@@ -57,10 +57,10 @@ class Ds_Introspector_Postgre extends Ds_Introspector
 		$sql = 'SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE table_name=\'' . $table_name . '\'';
 		$db_result = pg_exec($this->connection, $sql);
 		
-		$retval = null;
+		$schema = null;
 		if ($db_result) {
-			$retval = array(); // Only one structure per table
-			$data_struct  = new DataStructure($table_name);
+			$schema = array(); // Only one structure per table
+			$data_struct = $schema->create_entity($table_name);
 			while($field = pg_fetch_array($db_result, NULL, PGSQL_ASSOC)) { 
 				$field_info = &$data_struct->add_field_description($field['column_name']
 						, $this->get_type_mapping($field['udt_name'])
@@ -78,7 +78,6 @@ class Ds_Introspector_Postgre extends Ds_Introspector
 				$field_info->min_val = $this->min_val($field);
 				$field_info->max_val = $this->max_val($field);
 			} 
-			$retval[] = $data_struct;
 			
 			// Introspecting indexes
 			/*
@@ -91,7 +90,7 @@ class Ds_Introspector_Postgre extends Ds_Introspector
 			}*/
 		}
 
-		return $retval;
+		return $schema;
 	}
 
 	

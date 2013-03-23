@@ -1,0 +1,6 @@
+name=MySql DDL
+description=Template that generates MySQL DDL
+language=mysql
+; unit can be schema or entity
+unit=schema
+filename=$schema_name . '.sql'

@@ -4,25 +4,25 @@
  * @author    <?php echo $params['owner']; ?> <yourmail@email.com>
  * @version   0.1
  */
-<?php foreach($schema as $structure) { ?> 
-CREATE TABLE <?php echo $structure->name; ?> (
+<?php foreach($schema->entities as $entity) { ?> 
+CREATE TABLE <?php echo $entity->name; ?> (
 <?php 
 $ctr = 0;
-$count = sizeof($structure->field_descriptions);
-foreach ($structure->field_descriptions as $field_descr) {
+$count = sizeof($entity->field_descriptions);
+foreach ($entity->field_descriptions as $field_descr) {
 	$ctr++; 
-	echo "\t" . camel_to_underscore($field_descr->name) . ' ' . to_db_type($field_descr->type) . modifiers($field_descr);  
+	echo "\t" . camel_to_underscore($field_descr->name) . ' ' . to_mysql_type($field_descr->type) . mysql_modifiers($field_descr);  
 	if ($ctr < $count) 
 		echo ',';
 	echo "\n";
 } 
 ?> 
 )
-<?php } // foreach($schema as $structure) ?>
+<?php } // foreach($schema as $entity) ?>
 
 <?php
 // helper functions
-function to_db_type($type)
+function to_mysql_type($type)
 {
 	$type_mapping = array(
 		'bigint' => 'BIGINT', 
@@ -48,7 +48,7 @@ function to_db_type($type)
 	return array_key_exists($type, $type_mapping) ? $type_mapping[$type] : $type;
 }
 
-function modifiers($field_descr)
+function mysql_modifiers($field_descr)
 {
 	$modifiers = '';
 	if (!empty($field_descr->max_length)) {

@@ -5,13 +5,12 @@
  * @author    <?php echo $params['owner']; ?> <yourmail@mail.com>
  * @version   0.1
  */
-<?php foreach($schema as $structure) { ?> 
 /**
- * The model class that access the table <?php echo $structure->name; ?> 
+ * The model class that access the table <?php echo $entity->name; ?> 
  */
-class <?php echo ucfirst($structure->name); ?> {
+class <?php echo ucfirst($entity->name); ?> {
 
-<?php foreach ($structure->field_descriptions as $field_descr) { ?>
+<?php foreach ($entity->field_descriptions as $field_descr) { ?>
 	/** The field of type <?php echo $field_descr->type; ?> **/
 	public $<?php echo camel_to_underscore($field_descr->name); ?>;
 <?php } ?>
@@ -25,7 +24,6 @@ class <?php echo ucfirst($structure->name); ?> {
 	/**
 	* Load a record from persistent store
 	*/
-	public static load(<?php echo list_pks_csv($structure, '$'); ?>) {
+	public static load(<?php echo list_pks_csv($entity, '$'); ?>) {
 	}
 }
-<?php } // foreach($schema as $structure) ?>

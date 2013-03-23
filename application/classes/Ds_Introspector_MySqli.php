@@ -6,6 +6,8 @@ require_once 'Ds_Introspector.php';
  */
 class Ds_Introspector_MySqli extends Ds_Introspector
 {
+	public $db_name;
+	
 	function __construct() 
 	{
 	}
@@ -32,9 +34,9 @@ class Ds_Introspector_MySqli extends Ds_Introspector
 		}
 		
 		//$sql_str = 'SHOW TABLES FROM ' . $this->db_name . $like_clause;	
-    $sql_str = 
-      'SELECT table_name, COUNT(*) AS column_count 
-       FROM INFORMATION_SCHEMA.COLUMNS ' . $where_clause . ' GROUP BY table_name';
+		$sql_str = 
+			'SELECT table_name, COUNT(*) AS column_count 
+			FROM INFORMATION_SCHEMA.COLUMNS ' . $where_clause . ' GROUP BY table_name';
 		$db_result = $this->connection->query($sql_str);
 		
 		$retval = null;
@@ -48,17 +50,17 @@ class Ds_Introspector_MySqli extends Ds_Introspector
 	}
 	
 	/**
-	 * Returns the table metadata in form of associative array
+	 * Returns the data schema 
 	 * The row entry is of form: {field_name, type, length, nullable, key, default, extra
 	 */
 	function get_schema($table_name)
 	{
 		$db_result = $this->connection->query('DESC  ' . $table_name);
 		
-		$retval = null;
+		$schema = null;
 		if ($db_result) {
-			$retval = array(); // Only one structure per table
-			$data_struct  = new DataStructure($table_name);
+			$schema = new DataSchema($this->db_name);
+			$data_struct = $schema->create_entity($table_name);
 			while($field = $db_result->fetch_assoc()) { 
 				$field_info = &$data_struct->add_field_description($field['Field']
 						, $this->get_type_mapping($field['Type'])
@@ -76,7 +78,6 @@ class Ds_Introspector_MySqli extends Ds_Introspector
 				$field_info->min_val = $this->min_val($field);
 				$field_info->max_val = $this->max_val($field);
 			} 
-			$retval[] = $data_struct;
 			
 			// Introspecting indexes
 			$db_result = $this->connection->query('SHOW INDEX FROM  ' . $table_name);
@@ -88,9 +89,7 @@ class Ds_Introspector_MySqli extends Ds_Introspector
 			}
 		}
 
-		
-
-		return $retval;
+		return $schema;
 	}
 
 	

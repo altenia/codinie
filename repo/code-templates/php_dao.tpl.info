@@ -1,0 +1,7 @@
+name=PHP DAO
+description=Template that generates Data Access Object class in PHP
+language=php
+; unit can be schema or entity
+unit=entity
+file_name="$entity_name.'.php'"
+file_suffix=.php

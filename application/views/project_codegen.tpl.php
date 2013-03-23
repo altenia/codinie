@@ -15,7 +15,16 @@
 		<td><?php echo $template_name; ?></td>
 		<td>
     <textarea class="input-xxlarge" rows="20">
-<?php echo $code; ?>
+<?php 
+if (is_array($code)) {
+	foreach($code as $filename => $entity_code) {
+		echo "==" . $filename . "==\n";
+		echo $entity_code;
+	}
+} else {
+	echo $code;
+}
+?>
     </textarea>
 	</tr>
 <?php } ?>

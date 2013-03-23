@@ -9,13 +9,15 @@
 		<tr>
 			<td>Template</td>
 			<td>Description</td>
+			<td>Unit</td>
 		</tr>
 	</thead>
 	<tbody>
 <?php foreach($this->templates as $template) { ?>
 		<tr>
-			<td><a href="<?php echo route_url($this, 'Admin', 'template_form', array('id' => $template['id'])); ?>"><?php echo $template['id']; ?></a></td>
-			<td></td>
+			<td><a href="<?php echo route_url($this, 'Admin', 'template_form', array('id' => $template['id'])); ?>"><?php echo ifndef('name', $template, $template['id']); ?></a></td>
+			<td><?php echo $template['description']; ?></td>
+			<td><?php echo $template['unit']; ?></td>
 		</tr>
 <?php } ?>
     <tr>

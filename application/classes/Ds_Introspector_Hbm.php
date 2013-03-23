@@ -65,12 +65,12 @@ class Ds_Introspector_Hbm extends Ds_Introspector
 	{
 		$hbm = new SimpleXMLElement($this->url . $table_name, NULL, TRUE);
 
-		$retval = null;
+		$schema = null;
 		if ($hbm) {
-			$retval = array();
+			$schema = new DataSchema($this->db_name);
 			foreach($hbm->class as $class) { 
 				$class_attrs = $class->attributes();
-				$data_struct = new DataStructure( (string)$class_attrs->table);
+				$data_struct = $schema->create_entity((string)$class_attrs->table);
 				//print_r($class_attrs->name); die();
 				
 				foreach($class->id as $property) {
@@ -88,11 +88,10 @@ class Ds_Introspector_Hbm extends Ds_Introspector
 				foreach($class->{'many-to-one'} as $property) {
 					$this->process_field($data_struct, $property);
 				}
-				$retval[] = $data_struct;
 			} 
 		}
 
-		return $retval;
+		return $schema;
 	}
 	
 	/**

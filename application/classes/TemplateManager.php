@@ -5,8 +5,9 @@ require_once CLASSES_PATH . 'utils.php';
 class TemplateManager 
 {
 	const TPL_FILE_SUFIX = '.tpl.php';
+	const INFO_FILE_SUFIX = '.tpl.info';
 	
-	public $templates = array();
+	public $template_details = array();
 
 	/**
 	 *
@@ -27,28 +28,49 @@ class TemplateManager
 	}
 	
 	/**
-	 * Returns a proejct details
+	 * Returns a template details
 	 */	 
 	public function get($template_id)
 	{
-		$filename = $template_id . self::TPL_FILE_SUFIX;
-		return $this->read_file($filename);
+		$filepath_base = CODE_TEMPLATE_PATH . $template_id;
+		if (!file_exists($filepath_base . self::TPL_FILE_SUFIX)) {
+			throw new Exception('Template [' . $template_id . '] not found');
+		}
+		
+		$template_details = array();
+		
+		$info_filepath = CODE_TEMPLATE_PATH . $template_id . self::INFO_FILE_SUFIX;
+		if (file_exists($info_filepath)) {
+			$template_details = parse_ini_file($info_filepath);
+		}
+		
+		$template_details['content'] = file_get_contents($filepath_base . self::TPL_FILE_SUFIX);
+		
+		return $template_details;
 	}
 	
 	/**
-	 * Return the list of project details as retrived from XML.
+	 * Return the list of templates details (without the actual template).
 	 */
 	public function get_list($pattern = '*')
 	{
-		$templates = null;
+		$template_details = null;
 		$template_files = get_files(CODE_TEMPLATE_PATH , self::TPL_FILE_SUFIX, $pattern);
 		if (!empty($template_files)) {
-			$templates = array();
-			foreach($template_files as $template_file) {
-				$templates[] = array('id' => $template_file[0]);
+			$template_details = array();
+			foreach($template_files as $template_id) {
+				// read the info file
+				$info_filepath = CODE_TEMPLATE_PATH . $template_id[0] . self::INFO_FILE_SUFIX;
+				if (file_exists($info_filepath)) {
+					$info_array = parse_ini_file($info_filepath);
+					$template_details[] = array_merge($info_array, array('id' => $template_id[0]));
+					
+				} else {
+					$template_details[] = array('id' => $template_id[0], 'name' => $template_id[0],  'description' => '', 'unit' => 'undefined');
+				}
 			}
 		}
-		return $templates;
+		return $template_details;
 	}
 	
 	/**
@@ -57,8 +79,9 @@ class TemplateManager
 	 * @param 
 	 * @return
 	 */
-	public function id_exists($project_id)
+	public function id_exists($template_id)
 	{
+		return file_exists(CODE_TEMPLATE_PATH . $template_id . self::TPL_FILE_SUFIX);
 	}
 	
 	/**
@@ -69,6 +92,9 @@ class TemplateManager
 		return new TemplateManager();
 	}
 	
+	/**
+	 * Validates that a template's details contains minimul required fields
+	 */
 	public function validate($template_details)
 	{
 		$invalid_fields = array();
@@ -82,14 +108,4 @@ class TemplateManager
 		return $invalid_fields;
 	}
 	
-	public function read_file($filename)
-    {
-		$file_path = CODE_TEMPLATE_PATH . $filename;
-		if (!file_exists($file_path)) {
-			return null; 
-		}
-		$content = read_from_file($file_path);
-
-		return $content;
-	}
 }

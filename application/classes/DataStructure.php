@@ -23,11 +23,15 @@ class FieldInfo extends ArrayObject
 }
 
 /**
- * The Structure that represents a table.
+ * The DataStructure represents an entity (e.g. a table in a database).
  * A sequence of field descriptions.
+ * A set of entities is refered as schema.
  */
 class DataStructure 
 {
+	/** name of the package (e.g. namespace). Overrides the Schema's package **/
+	public $package;
+	
 	/** name of the structure (table name) **/
 	public $name;
 	
@@ -93,3 +97,41 @@ class DataStructure
 		$field_attributes['is_unique'] = $unique;
 	}
 }
+
+/**
+ * Clas that represents a set of entities (instances of data structures)
+ */
+class DataSchema 
+{
+	/** name of the package (e.g. namespace) **/
+	public $package;
+
+	/** name of the schema (e.g. database name) **/
+	public $name;
+	
+	/** associative array of instances of DataStructure **/
+	public $entities = array();
+	
+	function __construct($name){
+		$this->name = $name;
+	}
+	
+	/** 
+	 * Creates a new entity and returns its reference
+	 */
+	function &create_entity($entity_name)
+	{
+		$entity = new DataStructure($entity_name);
+		$this->entities[$entity_name] = $entity;
+		return $entity;
+	}
+	
+	/**
+	 * Returns the entity
+	 */
+	function &get_entity($entity_name)
+	{
+		return array_key_exists($name, $this->entities) ? $this->entities[$name] : null;
+	}
+}
+	

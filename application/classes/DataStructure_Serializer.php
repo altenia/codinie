@@ -8,17 +8,22 @@ abstract class DataStructure_Serializer {
 	abstract function serialize($schema);
 }
 
+/**
+ * Concrete class that serializes data schema instance into XML
+ */
 class DataStructure_Serializer_Xml extends DataStructure_Serializer{
 	
 	/**
 	 * Returns a serialized in string
+	 * 
+	 * @param DataSchema $schema
 	 */
 	function serialize($schema)
 	{
 		$retval = '';
-		foreach($schema as $data_structure) {
-			$retval .= "<entity name=\"" . $data_structure->name . "\" >\n";
-			foreach($data_structure->field_descriptions as $field_description) {
+		foreach($schema->entities as $entity) {
+			$retval .= "<entity name=\"" . $entity->name . "\" >\n";
+			foreach($entity->field_descriptions as $field_description) {
 				$retval .= "\t<field name=\"" . $field_description->name 
 					. "\" type=\"" . $field_description->type . "\"";
 				if(isset($field_description->is_key)) {

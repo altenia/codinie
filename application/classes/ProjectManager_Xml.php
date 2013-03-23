@@ -9,6 +9,7 @@ require_once CLASSES_PATH . 'utils.php';
 <project>
 	<name></name>
 	<owner></owner>
+	<codegen-dest></codegen-dest>
 	<created></created>
 	<last-modif></last-modif>
 	<data-source>
@@ -44,7 +45,6 @@ class ProjectManager_Xml extends ProjectManager
 			$project_id = $project_details['id'];
 			$this->projects[$project_details['id']] = $project_details;
 			$xml = $this->to_xml($project_details);
-			//print_r($xml); die();
 			// save xml
 			$file_path = PROJECTS_PATH . $project_id . self::FILE_SUFFIX;
 			$fh = fopen($file_path, 'w');
@@ -109,6 +109,7 @@ class ProjectManager_Xml extends ProjectManager
 		$project_details['owner'] = (string)$project_xml->owner;
 		$project_details['language'] = (string)$project_xml->language;
 		$project_details['description'] = (string)$project_xml->description;
+		$project_details['codegen-dest'] = (string)$project_xml->{'codegen-dest'}; // code generation destination
 		$project_details['created'] = (string)$project_xml->created;
 		$project_details['last-modif'] = (string)$project_xml->{'last-modif'};
 		$project_details['data-source'] = array();
@@ -149,6 +150,8 @@ class ProjectManager_Xml extends ProjectManager
 			$out_xml .= "\t<language>" . $project_details['language'] . "</language>\n";
 		if (array_key_exists('description', $project_details)) 
 			$out_xml .= "\t<description>" . $project_details['description'] . "</description>\n";
+		if (array_key_exists('codegen-dest', $project_details)) 
+			$out_xml .= "\t<codegen-dest>" . $project_details['codegen-dest'] . "</codegen-dest>\n";
 		if (array_key_exists('created', $project_details)) 
 			$out_xml .= "\t<created>" . $project_details['created'] . "</created>\n";
 			

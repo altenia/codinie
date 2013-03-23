@@ -19,3 +19,6 @@
 2013-03-21 20:49:27 - INFO --> Project [project1] updated.
 2013-03-21 20:53:53 - INFO --> Project [project1] updated.
 2013-03-21 20:55:12 - INFO --> Project [project1] updated.
+2013-03-21 20:56:26 - INFO --> Project [project1]: Code generated with template [db_posgresql_ddl].
+2013-03-21 20:57:05 - INFO --> Project [test] updated.
+2013-03-21 20:57:34 - INFO --> Project [test] updated.

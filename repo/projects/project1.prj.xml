@@ -4,6 +4,7 @@
 	<language>Java</language>
 	<description></description>
 	<last-modif>13/03/21-08:55:12</last-modif>
+	<codegen-dest></codegen-dest>
 	<data-source>
 		<type>Postgre</type>
 		<url>localhost</url>
