@@ -29,11 +29,17 @@ class FieldInfo extends ArrayObject
  */
 class DataStructure 
 {
-	/** name of the package (e.g. namespace). Overrides the Schema's package **/
-	public $package;
 	
-	/** name of the structure (table name) **/
+	public $data_schema = null;
+	
+	/** name of the package (e.g. namespace). Overrides the Schema's package **/
+	public $namespace = '';
+	
+	/** name of the class that represent the entity (class name) or if not provied, same as store_name **/
 	public $name;
+
+	/** name of the entity (table name) **/
+	public $store_name;
 	
 	/** Array of field descriptions **/
 	public $field_descriptions = array();
@@ -41,8 +47,49 @@ class DataStructure
 	/** Hashmap field name to index **/
 	private $field_name_to_index = array();
 	
-	function __construct($name){
+	/**
+	 * Constructor that initializes the name of the structure
+	 *
+	 * @param $name, 
+	 * @param $name_contains_namespace If true, the substring until the last dot is considered as package name
+	 */
+	function __construct($data_schema, $name, $name_contains_namespace = true)
+	{
+		$this->data_schema = $data_schema;
 		$this->name = $name;
+		$this->store_name = $name;
+		
+		if ($name_contains_namespace) {
+			$last_dot_pos = strrpos($name, DataSchema::NAME_SEPARATOR);
+			if ($last_dot_pos > 0) {
+				$this->namespace = substr($name, 0, $last_dot_pos);
+				$this->name = substr($name, $last_dot_pos+1, strlen($name));
+			}
+		}
+	}
+	
+	/**
+	 * Fully qualified name (namespace.name) 
+	 */
+	function get_fqn() 
+	{
+		$fqn = $this->get_fqns(true) . $this->name;
+		return $fqn;
+	}
+
+	/**
+	 * Fully qualified namespace
+	 */
+	function get_fqns($append_separator = false) 
+	{
+		$fqn = $this->namespace;
+		if (empty($fqn)) {
+			$fqn = ($this->data_schema != null) ? $this->data_schema->namespace : '';
+		}
+		if (!empty($fqn) && $append_separator) {
+			$fqn .= DataSchema::NAME_SEPARATOR;
+		}
+		return $fqn;
 	}
 	
 	function &add_field_description($name, $type, $is_nullable, $is_key, $default_val)
@@ -103,8 +150,10 @@ class DataStructure
  */
 class DataSchema 
 {
+	const NAME_SEPARATOR = '.';
+
 	/** name of the package (e.g. namespace) **/
-	public $package;
+	public $namespace;
 
 	/** name of the schema (e.g. database name) **/
 	public $name;
@@ -121,7 +170,7 @@ class DataSchema
 	 */
 	function &create_entity($entity_name)
 	{
-		$entity = new DataStructure($entity_name);
+		$entity = new DataStructure($this, $entity_name);
 		$this->entities[$entity_name] = $entity;
 		return $entity;
 	}

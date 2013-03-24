@@ -70,7 +70,8 @@ class Ds_Introspector_Hbm extends Ds_Introspector
 			$schema = new DataSchema($this->db_name);
 			foreach($hbm->class as $class) { 
 				$class_attrs = $class->attributes();
-				$data_struct = $schema->create_entity((string)$class_attrs->table);
+				$data_struct = $schema->create_entity((string)$class_attrs->name);
+				$data_struct->store_name = (string)$class_attrs->table;
 				//print_r($class_attrs->name); die();
 				
 				foreach($class->id as $property) {

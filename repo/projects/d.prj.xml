@@ -4,12 +4,12 @@
 	<language>Scala</language>
 	<description>Time Logger</description>
 	<codegen-dest></codegen-dest>
-	<last-modif>13/03/22-09:50:23</last-modif>
+	<last-modif>13/03/23-10:33:22</last-modif>
 	<data-source>
 		<type>Hbm</type>
 		<url>C:\appservers\webapps\codini\repo\projects\data-schemas\</url>
 		<username>test</username>
-		<db_name></db_name>
+		<db_name>test</db_name>
 	</data-source>
 	<active-templates>
 		<template name="db_mysql_ddl" />

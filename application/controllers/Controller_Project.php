@@ -185,6 +185,7 @@ class Controller_Project extends LayoutController {
 		View::set_global('breadcrumb', $breadcrumb);
 
 		$conn_details = $this->retrieve_conn_details($_POST);
+		$output_file = true;
 
 		$content = View::create('project_codegen');
 		$content->table_name = $table;
@@ -201,12 +202,34 @@ class Controller_Project extends LayoutController {
 		foreach($curr_project['active-templates'] as $active_template => $active) {
 			if ($active) {
 				$template_details = TemplateManager::instance()->get($active_template);
+				
 				$generated_code[$active_template] 
 					= $code_generator->generate($template_details, $schema, $curr_project);
 				
 				$this->get_logger()->logInfo('Project [' . $curr_project['id'] . ']: Code generated with template [' . $active_template . '].');
+				
+				// Output to file
+				if ($output_file) {
+					foreach($generated_code[$active_template] as $filepath => $code) {
+						$basepath = ifndef('codegen-dest', $curr_project, null);
+						if (empty($basepath)) {
+							$basepath = PROJECTS_PATH . $curr_project['id'];
+						}
+						if (substr($basepath, -1) != '/')
+							$basepath .= '/';
+						// The base path must exist otherwise fail.
+						if (is_dir($basepath)) {
+							create_folders($basepath . get_folder_part($filepath));
+							save_to_file($basepath . $filepath, $code);
+						} else {
+							$this->get_logger()->logWarn('Project [' . $curr_project['id'] . ']: Could not write to directory [' . $basepath . '].');
+							throw new Exception('Destination directory [' . $basepath . '] does not exists');
+						}
+					}
+				}
 			}
 		}
+		
 		$content->generated_code = $generated_code;
 		$this->view->content = $content;
 		$this->renderView();
@@ -312,6 +335,8 @@ class Controller_Project extends LayoutController {
 		
 		return $project_details;
 	}
+	
+
 	
 	private function get_logger()
 	{

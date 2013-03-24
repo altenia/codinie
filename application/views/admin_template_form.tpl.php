@@ -14,6 +14,7 @@ if ($this->is_new) {
 <?php } else { ?>
 	<input type="hidden" name="template_id" value="<?php echo $this->template['id']; ?>" /> 
 <?php } ?>
+	<textarea name="template_info" style="width: 100%;" rows="10" ><?php echo $this->template['info']; ?></textarea>
 	<textarea name="template_content" style="width: 100%;" rows="20" ><?php echo $this->template['content']; ?></textarea>
 	<br />
 	<input name="submit" type="submit" value="<?php echo $submit_label; ?>" />

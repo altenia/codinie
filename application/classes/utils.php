@@ -81,3 +81,32 @@ function trim_empty($val)
 {
 	return (trim($val) == false);
 }
+
+/**
+ * Returns the folder part from a string
+ * E.g.: input: /hello/world/Beautiful.xml
+ *      output: /hello/world/
+ */
+function get_folder_part($path)
+{
+	$last_dot_pos = strrpos($path, '/');
+	if ($last_dot_pos > 0) {
+		return substr($path, 0, $last_dot_pos);
+	}
+	return '';
+}
+
+/**
+ * Creates sub folders recursively starting from the base path
+ * returns true if successful, false otherwise
+ */
+function create_folders($path)
+{
+echo '^^',$path,'##<br>';
+	if (!file_exists($path)) {
+		mkdir($path, 0777, true);
+		return true;
+	} else {
+		return false;
+	}
+}

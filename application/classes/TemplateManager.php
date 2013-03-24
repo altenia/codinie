@@ -19,7 +19,6 @@ class TemplateManager
 	{
 		$file_path = CODE_TEMPLATE_PATH . $template_details['id'] . self::TPL_FILE_SUFIX;
 		
-		//print_r($file_path); die();
 		save_to_file($file_path, $template_details['content']);
 	}
 	
@@ -38,12 +37,13 @@ class TemplateManager
 		}
 		
 		$template_details = array();
-		
+
 		$info_filepath = CODE_TEMPLATE_PATH . $template_id . self::INFO_FILE_SUFIX;
 		if (file_exists($info_filepath)) {
 			$template_details = parse_ini_file($info_filepath);
 		}
 		
+		$template_details['id'] = $template_id;	
 		$template_details['content'] = file_get_contents($filepath_base . self::TPL_FILE_SUFIX);
 		
 		return $template_details;

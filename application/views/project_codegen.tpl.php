@@ -18,7 +18,7 @@
 <?php 
 if (is_array($code)) {
 	foreach($code as $filename => $entity_code) {
-		echo "==" . $filename . "==\n";
+		echo "/* file:" . $filename . " */\n";
 		echo $entity_code;
 	}
 } else {

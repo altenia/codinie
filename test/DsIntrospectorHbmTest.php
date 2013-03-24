@@ -14,8 +14,7 @@ class DsIntrospectorHbmTest extends PHPUnit_Framework_TestCase
 	public function test1() {
 		
 		$db_intros = new Ds_Introspector_Hbm();
-		
-		$db_intros->create_connection('C:/appservers/webapps/codini/application/data-schemas/', 'test', 'test', 'OT');
+		$db_intros->create_connection('C:/appservers/webapps/codini/repo/projects/data-schemas/', 'test', 'test', '');
 		
 		$tables = $db_intros->get_table_list('*');
 		

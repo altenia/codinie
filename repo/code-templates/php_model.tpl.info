@@ -3,5 +3,5 @@ description=Template that generates Model class in PHP
 language=php
 ; unit can be schema or entity
 unit=entity
-file_name=$entity_name
+file_name="$entity_name . '.sql'"
 file_suffix=.php

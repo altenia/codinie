@@ -38,6 +38,12 @@
 			<input type="text" name="project.language" value="<?php echo ifndef('language', $this->project_details, ''); ?>">
 		</div>
 	</div>
+	<div class="control-group">
+		<label class="control-label" for="project.codegen-dest">Generated Code Destination</label>
+		<div class="controls">
+			<input type="text" name="project.codegen-dest" value="<?php echo ifndef('codegen-dest', $this->project_details, ''); ?>">
+		</div>
+	</div>
 
 	<hr />
 	<h4>Data Source</h4>

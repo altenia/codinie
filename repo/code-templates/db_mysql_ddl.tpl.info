@@ -3,4 +3,5 @@ description=Template that generates MySQL DDL
 language=mysql
 ; unit can be schema or entity
 unit=schema
-filename=$schema_name . '.sql'
+file_name="$schema_name . '.sql'"
+file_suffix=.sql

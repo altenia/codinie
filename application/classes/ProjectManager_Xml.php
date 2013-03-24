@@ -52,6 +52,9 @@ class ProjectManager_Xml extends ProjectManager
 			fclose($fh);
 		}
 		
+		// create folder if not exists
+		mkdir(PROJECTS_PATH . $curr_project['id']);
+		
 		return true;
 	}
 	
