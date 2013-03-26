@@ -1,7 +1,7 @@
 <?php 
 defined('APP_PATH') or die('No direct script access.');
 
-require_once FRAMEWORK_PATH . 'LayoutController.php';
+require_once 'CodiniController.php';
 require_once CLASSES_PATH . 'TemplateManager.php';
 require_once CLASSES_PATH . 'utils.php';
 
@@ -10,9 +10,7 @@ require_once CLASSES_PATH . 'utils.php';
  *
  * @author Young Suk Ahn
  */
-class Controller_Admin extends LayoutController {
-
-	
+class Controller_Admin extends CodiniController {
     
 	/**
 	 * Constructur. Calls the parent's constructor
@@ -56,37 +54,39 @@ class Controller_Admin extends LayoutController {
     {
 		$breadcrumb = array( array('Templates', 'templates') );
 		
-		$template = array();
-		$template['id'] = $this->getRequestParam('template_id');
-		$template['content'] = '';
+		$template_details = array();
+		$template_details['id'] = $this->getRequestParam('template_id');
+		$template_details['content'] = '';
 		$error_fields = array();
 		$is_new = false; // Is the form a new template or editing existing
 		if ($this->isMethodPost()) {
-			$template['content'] = $this->getRequestParam('template_content');
-			$error_fields = TemplateManager::instance()->validate($template);
+			$template_details['content'] = $this->getRequestParam('template_content');
+			$template_details['info_raw'] = $this->getRequestParam('template_info');
+			$error_fields = TemplateManager::instance()->validate($template_details);
 			if (empty($error_fields)) {
-				TemplateManager::instance()->save($template);
+				TemplateManager::instance()->save($template_details);
 			}
 			$this->redirect( route_url($this, 'Admin', 'index') );
 		} else {
-			$template['id'] = $this->getRequestParam('id');
-			//print_r($template['id']);
-			$is_new = empty($template['id']);
-			if ($template['id'] == null) {
-				$template['id'] = '';
-				$template['content'] = '';
+			$template_details['id'] = $this->getRequestParam('id');
+			$is_new = empty($template_details['id']);
+			if ($template_details['id'] == null) {
+				$template_details['id'] = '';
+				$template_details['content'] = '';
+				$template_details['info_raw'] = TemplateManager::info_to_ini(null);
 			} else {
-				$template_details = TemplateManager::instance()->get($template['id']);
-				$template['content'] = $template_details['content'];
+				$template_details = TemplateManager::instance()->get($template_details['id']);
 			}
-			
 		}
+//print_r($template_details);
 		
 		$content = View::create('admin_template_form');
 		$content->is_new = $is_new;
-		$content->template = $template;
+		$content->template_details = $template_details;
 		$content->error_fields = $error_fields;
 		$this->view->content = $content;
+		
+		$this->require_js_main = '/codini/public/admin_template_form';
 		$this->renderView();
     }
 	

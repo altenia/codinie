@@ -17,9 +17,11 @@ class TemplateManager
 	 */
 	public function save($template_details)
 	{
-		$file_path = CODE_TEMPLATE_PATH . $template_details['id'] . self::TPL_FILE_SUFIX;
+		$content_file_path = CODE_TEMPLATE_PATH . $template_details['id'] . self::TPL_FILE_SUFIX;
+		save_to_file($content_file_path, $template_details['content']);
 		
-		save_to_file($file_path, $template_details['content']);
+		$info_file_path = CODE_TEMPLATE_PATH . $template_details['id'] . self::INFO_FILE_SUFIX;
+		save_to_file($info_file_path, $template_details['info_raw']);
 	}
 	
 	public function delete($template_id)
@@ -41,6 +43,10 @@ class TemplateManager
 		$info_filepath = CODE_TEMPLATE_PATH . $template_id . self::INFO_FILE_SUFIX;
 		if (file_exists($info_filepath)) {
 			$template_details = parse_ini_file($info_filepath);
+			// Also retrieve the raw info (ini) file.
+			$template_details['info_raw'] = file_get_contents($info_filepath);
+		} else {
+			$template_details['info_raw'] = self::info_to_ini();
 		}
 		
 		$template_details['id'] = $template_id;	
@@ -106,6 +112,23 @@ class TemplateManager
 			$invalid_fields['content'] = 'Name is required';
 		}
 		return $invalid_fields;
+	}
+	
+	public static function info_to_ini($info_details)
+	{
+		if ($info_details == null) {
+			$info_details = array();
+		}
+		$retval = "name=" . ifndef('name', $info_details, '') . "\n";
+		$retval .= "description=" . ifndef('description', $info_details, ''). "\n";
+		$retval .= "; The language to be generated\n";
+		$retval .= "language=" . ifndef('language', $info_details, ''). "\n";
+		$retval .= "; The unit which the template is iterated over. Can be schema or entity.\n";
+		$retval .= "unit=" . ifndef('unit', $info_details, ''). "\n";
+		$retval .= ";file_name=\"\$schema_name . '.extension'\"\n";
+		$retval .= "; The suffix that is appended to the generated file name (e.g. .xml).\n";
+		$retval .= "file_suffix=" . ifndef('file_suffix', $info_details, ''). "\n";
+		return $retval;
 	}
 	
 }

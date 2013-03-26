@@ -47,13 +47,11 @@ class ProjectManager_Xml extends ProjectManager
 			$xml = $this->to_xml($project_details);
 			// save xml
 			$file_path = PROJECTS_PATH . $project_id . self::FILE_SUFFIX;
-			$fh = fopen($file_path, 'w');
-			fwrite($fh, $xml);
-			fclose($fh);
+			file_put_contents($file_path, $xml);
 		}
 		
 		// create folder if not exists
-		mkdir(PROJECTS_PATH . $curr_project['id']);
+		mkdir(PROJECTS_PATH . $project_details['id']);
 		
 		return true;
 	}

@@ -17,6 +17,10 @@ class ControllerBase {
     
     protected $controllerName;
     protected $actionName;
+	
+	protected $scripts;
+	protected $require_js_main = 'main'; // This may be overrided by the child class's constructor
+	protected $css;
     
 	/**
 	 * The constructure initializes the template engine.
@@ -31,6 +35,9 @@ class ControllerBase {
     {
 		if (!empty($this->view)) {
 			View::set_global('contextPath', $this->contextPath);
+			View::set_global('css', $this->css);
+			View::set_global('scripts', $this->scripts);
+			View::set_global('require_js_main', $this->require_js_main);
 			$this->view->render();
 		}
     }

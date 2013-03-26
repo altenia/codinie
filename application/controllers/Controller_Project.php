@@ -1,7 +1,7 @@
 <?php 
 defined('APP_PATH') or die('No direct script access.');
 
-require_once FRAMEWORK_PATH . 'LayoutController.php';
+require_once 'CodiniController.php';
 require_once CLASSES_PATH . 'TemplateManager.php';
 require_once CLASSES_PATH . 'ProjectManager_Xml.php';
 require_once CLASSES_PATH . 'DataStructure_Serializer.php';
@@ -12,7 +12,7 @@ require_once CLASSES_PATH . 'CodeGen_PhpTemplate.php';
  *
  * @author Young Suk Ahn
  */
-class Controller_Project extends LayoutController {
+class Controller_Project extends CodiniController {
     
 	const DS_INTROSPECTOR_PREFIX = 'Ds_Introspector_';
     const MEMBER_SEPARATOR = '_';
@@ -56,7 +56,6 @@ class Controller_Project extends LayoutController {
         if ($this->isMethodPost()) {
 			// Creating a new project
 			$project_details = $this->get_project_details_from_post($_POST);
-			//print_r($project_details); die();
 			
 			$error_fields = $project_manager->validate($project_details);
 			
@@ -66,6 +65,9 @@ class Controller_Project extends LayoutController {
 
 			if (empty($error_fields)) {
 				$project_id = $project_details['id'];
+				if (empty($project_details['codegen-dest'])) {
+					$project_details['codegen-dest'] = PROJECTS_PATH . $project_details['id'];
+				}
 				$project_manager->save($project_details);
 				
 				$is_new = to_bool($this->getRequestParam('is_new'));

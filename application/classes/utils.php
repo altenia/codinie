@@ -30,6 +30,7 @@ function get_files($prefix, $suffix, $pattern = '*', $remove_suffix = true)
 
 /**
  * Save a string to file
+ * use file_put_contents
  */
 function save_to_file($file_path, $data)
 {
@@ -40,6 +41,7 @@ function save_to_file($file_path, $data)
 
 /**
  * Save a string to file
+ * use file_get_contents
  */
 function read_from_file($file_path)
 {
@@ -102,7 +104,6 @@ function get_folder_part($path)
  */
 function create_folders($path)
 {
-echo '^^',$path,'##<br>';
 	if (!file_exists($path)) {
 		mkdir($path, 0777, true);
 		return true;

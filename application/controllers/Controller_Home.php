@@ -1,7 +1,7 @@
 <?php 
 defined('APP_PATH') or die('No direct script access.');
 
-require_once FRAMEWORK_PATH . 'LayoutController.php';
+require_once 'CodiniController.php';
 require_once CLASSES_PATH . 'ProjectManager_Xml.php';
 require_once CLASSES_PATH . 'utils.php';
 
@@ -10,7 +10,7 @@ require_once CLASSES_PATH . 'utils.php';
  *
  * @author Young Suk Ahn
  */
-class Controller_Home extends LayoutController {
+class Controller_Home extends CodiniController {
    
 	/**
 	 * Constructur. Calls the parent's constructor

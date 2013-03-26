@@ -1,0 +1,5 @@
+2013-03-24 21:31:58 - INFO --> Project [quantilize] updated.
+2013-03-24 21:42:08 - INFO --> Project [quantilize] updated.
+2013-03-24 21:42:47 - INFO --> Project [quantilize] updated.
+2013-03-24 21:43:11 - INFO --> Project [quantilize] updated.
+2013-03-24 21:43:26 - INFO --> Project [quantilize]: Code generated with template [scala_entity].

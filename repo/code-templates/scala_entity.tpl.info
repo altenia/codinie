@@ -1,0 +1,9 @@
+name=Scala Entity class
+description=Scala entity class
+; The language to be generated
+language=scala
+; The unit which the template is iterated over. Can be schema or entity.
+unit=entity
+;file_name="$schema_name . '.extension'"
+; The suffix that is appended to the generated file name (e.g. .xml).
+file_suffix=.scala
