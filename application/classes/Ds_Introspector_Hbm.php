@@ -65,6 +65,9 @@ class Ds_Introspector_Hbm extends Ds_Introspector
 	{
 		$hbm = new SimpleXMLElement($this->url . $table_name, NULL, TRUE);
 
+		// List of fields with unresolved references
+		$unresolved_references = array();
+		
 		$schema = null;
 		if ($hbm) {
 			$schema = new DataSchema($this->db_name);
@@ -74,6 +77,7 @@ class Ds_Introspector_Hbm extends Ds_Introspector
 				$data_struct->store_name = (string)$class_attrs->table;
 				//print_r($class_attrs->name); die();
 				
+				// Process the identity field
 				foreach($class->id as $property) {
 					$field_info = $this->process_field($data_struct, $property);
 					$field_info->is_nullable = false;
@@ -82,14 +86,47 @@ class Ds_Introspector_Hbm extends Ds_Introspector
 					if (isset($property->generator)) {
 						$field_info->is_autoincrement = true;
 					}
+					$data_struct->set_identity_field($field_info);
 				}
+				
+				// Process regular fields 
 				foreach($class->property as $property) {
 					$this->process_field($data_struct, $property);
 				}
+				
+				// Process many-to-one fields
 				foreach($class->{'many-to-one'} as $property) {
-					$this->process_field($data_struct, $property);
+					$field_info = $this->process_field($data_struct, $property);
+					$field_info->class_ref = (string)$this->obtain_field_attribute($property, 'class', null);
+					$field_info->type= 'class'; 
+					
+					$class_ref = $schema->get_entity($field_info->class_ref);
+					
+					if ($class_ref != null) {
+//print("ASSIGNED:".$class_ref->name."\n");
+						// Class reference was found.
+						$field_info->class_ref = $class_ref;
+					} else {
+//print("PENDING:".$field_info->name."\n");
+						$unresolved_references[] = $field_info;
+					}
+					// In the scond pass, for all those not found, 
 				}
 			} 
+		}
+		
+		//print_r($unresolved_references);
+		
+		foreach($unresolved_references as $unresolved_ref)
+		{
+			$class_ref = $schema->get_entity($unresolved_ref->class_ref);
+//print_r($unresolved_ref);
+//print_r($class_ref);
+			if ($class_ref != null) {
+				// Class reference was found.
+//print("ASSOC:".$unresolved_ref->class_ref." TO :".$class_ref->name."\n");
+				$unresolved_ref->class_ref = $class_ref;
+			}
 		}
 
 		return $schema;

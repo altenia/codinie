@@ -22,7 +22,7 @@ class DsIntrospectorHbmTest extends PHPUnit_Framework_TestCase
 		//print "TABLES: ";
 		//print_r($tables);
 		
-		$table_meta = $db_intros->get_schema($tables[0]['table_name']);
+		$table_meta = $db_intros->get_schema('ATest.hbm.xml');
 		print "DESC : ";
 		print_r($table_meta);
 		

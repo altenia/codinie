@@ -46,7 +46,7 @@ class TemplateManager
 			// Also retrieve the raw info (ini) file.
 			$template_details['info_raw'] = file_get_contents($info_filepath);
 		} else {
-			$template_details['info_raw'] = self::info_to_ini();
+			$template_details['info_raw'] = self::info_to_ini(null);
 		}
 		
 		$template_details['id'] = $template_id;	

@@ -25,12 +25,8 @@
 			<meta attribute="field-description">The creator of the record</meta>
 		</many-to-one>
 		
-		<property name="domainId" type="string">
-			<meta attribute="field-description">The ID of the domain that this record is context of</meta>
-			<column name="domainId" not-null="true" length="64" />
-		</property>
-		<many-to-one name="userDto" column="userSid" not-null="true" fetch="join"
-			class="com.seednia.module.core.user.dto.UserDto" >
+		<many-to-one name="supportDto" column="supportSid" not-null="true" fetch="join"
+			class="com.seednia.module.core.praise.dto.PraiseSupportDto" >
 			<meta attribute="field-description">User that is being praised (boasted/bragged).</meta>
 		</many-to-one>
 	
@@ -53,8 +49,8 @@
 			<meta attribute="field-description">The ID of the domain that this record is context of</meta>
 			<column name="domainId" not-null="false" length="64" unique="true" default="0" />
 		</property>
-		<many-to-one name="creatorDto" column="creatorSid" not-null="true" fetch="join"
-			class="com.seednia.module.core.user.dto.UserDto" >
+		<many-to-one name="praiseDto" column="praiseSid" not-null="true" fetch="join"
+			class="com.seednia.module.core.praise.dto.PraiseDto" >
 			<meta attribute="field-description">The creator of the record</meta>
 		</many-to-one>
 		

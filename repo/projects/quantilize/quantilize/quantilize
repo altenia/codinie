@@ -1,0 +1,22 @@
+/**
+ * This file is DDL for Quantilize.
+ *
+ * @author    Young Suk Ahn <yourmail@email.com>
+ * @version   0.1
+ */
+ 
+CREATE TABLE PraiseDto (
+	sid BIGINT NOT NULL,
+	domain_id VARCHAR(64),
+	creator_dto com.seednia.module.core.user.dto.UserDto,
+	support_dto BIGINT
+ 
+)
+ 
+CREATE TABLE PraiseSupportDto (
+	sid BIGINT NOT NULL,
+	domain_id VARCHAR(64),
+	praise_dto BIGINT
+ 
+)
+

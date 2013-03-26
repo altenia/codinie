@@ -1,0 +1,511 @@
+PHPUnit 3.7.15 by Sebastian Bergmann.
+
+.PENDING:creatorDto
+PENDING:supportDto
+ASSIGNED:PraiseDto
+DESC : DataSchema Object
+(
+    [namespace] => 
+    [name] => 
+    [entities] => Array
+        (
+            [com.seednia.module.core.praise.dto.PraiseDto] => DataStructure Object
+                (
+                    [data_schema] => DataSchema Object
+ *RECURSION*
+                    [namespace] => com.seednia.module.core.praise.dto
+                    [name] => PraiseDto
+                    [store_name] => Post
+                    [field_descriptions] => Array
+                        (
+                            [0] => FieldInfo Object
+                                (
+                                    [storage:ArrayObject:private] => Array
+                                        (
+                                            [name] => sid
+                                            [type] => long
+                                            [is_nullable] => 
+                                            [is_key] => 1
+                                            [default_val] => 
+                                            [is_identity] => 
+                                            [is_unique] => 1
+                                            [min_length] => 
+                                            [max_length] => 
+                                            [is_updatable] => 1
+                                            [is_insertable] => 1
+                                            [is_searchable] => 
+                                            [min_val] => 
+                                            [max_val] => 
+                                            [is_autoincrement] => 1
+                                        )
+
+                                )
+
+                            [1] => FieldInfo Object
+                                (
+                                    [storage:ArrayObject:private] => Array
+                                        (
+                                            [name] => domainId
+                                            [type] => string
+                                            [is_nullable] => 1
+                                            [is_key] => 
+                                            [default_val] => 
+                                            [is_identity] => 
+                                            [is_unique] => 
+                                            [min_length] => 
+                                            [max_length] => 64
+                                            [is_updatable] => 1
+                                            [is_insertable] => 1
+                                            [is_searchable] => 
+                                            [min_val] => 
+                                            [max_val] => 
+                                        )
+
+                                )
+
+                            [2] => FieldInfo Object
+                                (
+                                    [storage:ArrayObject:private] => Array
+                                        (
+                                            [name] => creatorDto
+                                            [type] => class
+                                            [is_nullable] => 1
+                                            [is_key] => 
+                                            [default_val] => 
+                                            [is_identity] => 
+                                            [is_unique] => 
+                                            [min_length] => 
+                                            [max_length] => 
+                                            [is_updatable] => 1
+                                            [is_insertable] => 1
+                                            [is_searchable] => 
+                                            [min_val] => 
+                                            [max_val] => 
+                                            [class_ref] => com.seednia.module.core.user.dto.UserDto
+                                        )
+
+                                )
+
+                            [3] => FieldInfo Object
+                                (
+                                    [storage:ArrayObject:private] => Array
+                                        (
+                                            [name] => supportDto
+                                            [type] => class
+                                            [is_nullable] => 1
+                                            [is_key] => 
+                                            [default_val] => 
+                                            [is_identity] => 
+                                            [is_unique] => 
+                                            [min_length] => 
+                                            [max_length] => 
+                                            [is_updatable] => 1
+                                            [is_insertable] => 1
+                                            [is_searchable] => 
+                                            [min_val] => 
+                                            [max_val] => 
+                                            [class_ref] => DataStructure Object
+                                                (
+                                                    [data_schema] => DataSchema Object
+ *RECURSION*
+                                                    [namespace] => com.seednia.module.core.praise.dto
+                                                    [name] => PraiseSupportDto
+                                                    [store_name] => PraiseSupport
+                                                    [field_descriptions] => Array
+                                                        (
+                                                            [0] => FieldInfo Object
+                                                                (
+                                                                    [storage:ArrayObject:private] => Array
+                                                                        (
+                                                                            [name] => sid
+                                                                            [type] => long
+                                                                            [is_nullable] => 
+                                                                            [is_key] => 1
+                                                                            [default_val] => 
+                                                                            [is_identity] => 
+                                                                            [is_unique] => 1
+                                                                            [min_length] => 
+                                                                            [max_length] => 
+                                                                            [is_updatable] => 1
+                                                                            [is_insertable] => 1
+                                                                            [is_searchable] => 
+                                                                            [min_val] => 
+                                                                            [max_val] => 
+                                                                            [is_autoincrement] => 1
+                                                                        )
+
+                                                                )
+
+                                                            [1] => FieldInfo Object
+                                                                (
+                                                                    [storage:ArrayObject:private] => Array
+                                                                        (
+                                                                            [name] => domainId
+                                                                            [type] => string
+                                                                            [is_nullable] => 1
+                                                                            [is_key] => 1
+                                                                            [default_val] => 0
+                                                                            [is_identity] => 
+                                                                            [is_unique] => 1
+                                                                            [min_length] => 
+                                                                            [max_length] => 64
+                                                                            [is_updatable] => 
+                                                                            [is_insertable] => 1
+                                                                            [is_searchable] => 
+                                                                            [min_val] => 
+                                                                            [max_val] => 
+                                                                        )
+
+                                                                )
+
+                                                            [2] => FieldInfo Object
+                                                                (
+                                                                    [storage:ArrayObject:private] => Array
+                                                                        (
+                                                                            [name] => praiseDto
+                                                                            [type] => class
+                                                                            [is_nullable] => 1
+                                                                            [is_key] => 
+                                                                            [default_val] => 
+                                                                            [is_identity] => 
+                                                                            [is_unique] => 
+                                                                            [min_length] => 
+                                                                            [max_length] => 
+                                                                            [is_updatable] => 1
+                                                                            [is_insertable] => 1
+                                                                            [is_searchable] => 
+                                                                            [min_val] => 
+                                                                            [max_val] => 
+                                                                            [class_ref] => DataStructure Object
+ *RECURSION*
+                                                                        )
+
+                                                                )
+
+                                                        )
+
+                                                    [identity_field] => FieldInfo Object
+                                                        (
+                                                            [storage:ArrayObject:private] => Array
+                                                                (
+                                                                    [name] => sid
+                                                                    [type] => long
+                                                                    [is_nullable] => 
+                                                                    [is_key] => 1
+                                                                    [default_val] => 
+                                                                    [is_identity] => 
+                                                                    [is_unique] => 1
+                                                                    [min_length] => 
+                                                                    [max_length] => 
+                                                                    [is_updatable] => 1
+                                                                    [is_insertable] => 1
+                                                                    [is_searchable] => 
+                                                                    [min_val] => 
+                                                                    [max_val] => 
+                                                                    [is_autoincrement] => 1
+                                                                )
+
+                                                        )
+
+                                                    [field_name_to_index:DataStructure:private] => Array
+                                                        (
+                                                            [sid] => 0
+                                                            [domainId] => 1
+                                                            [praiseDto] => 2
+                                                        )
+
+                                                )
+
+                                        )
+
+                                )
+
+                        )
+
+                    [identity_field] => FieldInfo Object
+                        (
+                            [storage:ArrayObject:private] => Array
+                                (
+                                    [name] => sid
+                                    [type] => long
+                                    [is_nullable] => 
+                                    [is_key] => 1
+                                    [default_val] => 
+                                    [is_identity] => 
+                                    [is_unique] => 1
+                                    [min_length] => 
+                                    [max_length] => 
+                                    [is_updatable] => 1
+                                    [is_insertable] => 1
+                                    [is_searchable] => 
+                                    [min_val] => 
+                                    [max_val] => 
+                                    [is_autoincrement] => 1
+                                )
+
+                        )
+
+                    [field_name_to_index:DataStructure:private] => Array
+                        (
+                            [sid] => 0
+                            [domainId] => 1
+                            [creatorDto] => 2
+                            [supportDto] => 3
+                        )
+
+                )
+
+            [com.seednia.module.core.praise.dto.PraiseSupportDto] => DataStructure Object
+                (
+                    [data_schema] => DataSchema Object
+ *RECURSION*
+                    [namespace] => com.seednia.module.core.praise.dto
+                    [name] => PraiseSupportDto
+                    [store_name] => PraiseSupport
+                    [field_descriptions] => Array
+                        (
+                            [0] => FieldInfo Object
+                                (
+                                    [storage:ArrayObject:private] => Array
+                                        (
+                                            [name] => sid
+                                            [type] => long
+                                            [is_nullable] => 
+                                            [is_key] => 1
+                                            [default_val] => 
+                                            [is_identity] => 
+                                            [is_unique] => 1
+                                            [min_length] => 
+                                            [max_length] => 
+                                            [is_updatable] => 1
+                                            [is_insertable] => 1
+                                            [is_searchable] => 
+                                            [min_val] => 
+                                            [max_val] => 
+                                            [is_autoincrement] => 1
+                                        )
+
+                                )
+
+                            [1] => FieldInfo Object
+                                (
+                                    [storage:ArrayObject:private] => Array
+                                        (
+                                            [name] => domainId
+                                            [type] => string
+                                            [is_nullable] => 1
+                                            [is_key] => 1
+                                            [default_val] => 0
+                                            [is_identity] => 
+                                            [is_unique] => 1
+                                            [min_length] => 
+                                            [max_length] => 64
+                                            [is_updatable] => 
+                                            [is_insertable] => 1
+                                            [is_searchable] => 
+                                            [min_val] => 
+                                            [max_val] => 
+                                        )
+
+                                )
+
+                            [2] => FieldInfo Object
+                                (
+                                    [storage:ArrayObject:private] => Array
+                                        (
+                                            [name] => praiseDto
+                                            [type] => class
+                                            [is_nullable] => 1
+                                            [is_key] => 
+                                            [default_val] => 
+                                            [is_identity] => 
+                                            [is_unique] => 
+                                            [min_length] => 
+                                            [max_length] => 
+                                            [is_updatable] => 1
+                                            [is_insertable] => 1
+                                            [is_searchable] => 
+                                            [min_val] => 
+                                            [max_val] => 
+                                            [class_ref] => DataStructure Object
+                                                (
+                                                    [data_schema] => DataSchema Object
+ *RECURSION*
+                                                    [namespace] => com.seednia.module.core.praise.dto
+                                                    [name] => PraiseDto
+                                                    [store_name] => Post
+                                                    [field_descriptions] => Array
+                                                        (
+                                                            [0] => FieldInfo Object
+                                                                (
+                                                                    [storage:ArrayObject:private] => Array
+                                                                        (
+                                                                            [name] => sid
+                                                                            [type] => long
+                                                                            [is_nullable] => 
+                                                                            [is_key] => 1
+                                                                            [default_val] => 
+                                                                            [is_identity] => 
+                                                                            [is_unique] => 1
+                                                                            [min_length] => 
+                                                                            [max_length] => 
+                                                                            [is_updatable] => 1
+                                                                            [is_insertable] => 1
+                                                                            [is_searchable] => 
+                                                                            [min_val] => 
+                                                                            [max_val] => 
+                                                                            [is_autoincrement] => 1
+                                                                        )
+
+                                                                )
+
+                                                            [1] => FieldInfo Object
+                                                                (
+                                                                    [storage:ArrayObject:private] => Array
+                                                                        (
+                                                                            [name] => domainId
+                                                                            [type] => string
+                                                                            [is_nullable] => 1
+                                                                            [is_key] => 
+                                                                            [default_val] => 
+                                                                            [is_identity] => 
+                                                                            [is_unique] => 
+                                                                            [min_length] => 
+                                                                            [max_length] => 64
+                                                                            [is_updatable] => 1
+                                                                            [is_insertable] => 1
+                                                                            [is_searchable] => 
+                                                                            [min_val] => 
+                                                                            [max_val] => 
+                                                                        )
+
+                                                                )
+
+                                                            [2] => FieldInfo Object
+                                                                (
+                                                                    [storage:ArrayObject:private] => Array
+                                                                        (
+                                                                            [name] => creatorDto
+                                                                            [type] => class
+                                                                            [is_nullable] => 1
+                                                                            [is_key] => 
+                                                                            [default_val] => 
+                                                                            [is_identity] => 
+                                                                            [is_unique] => 
+                                                                            [min_length] => 
+                                                                            [max_length] => 
+                                                                            [is_updatable] => 1
+                                                                            [is_insertable] => 1
+                                                                            [is_searchable] => 
+                                                                            [min_val] => 
+                                                                            [max_val] => 
+                                                                            [class_ref] => com.seednia.module.core.user.dto.UserDto
+                                                                        )
+
+                                                                )
+
+                                                            [3] => FieldInfo Object
+                                                                (
+                                                                    [storage:ArrayObject:private] => Array
+                                                                        (
+                                                                            [name] => supportDto
+                                                                            [type] => class
+                                                                            [is_nullable] => 1
+                                                                            [is_key] => 
+                                                                            [default_val] => 
+                                                                            [is_identity] => 
+                                                                            [is_unique] => 
+                                                                            [min_length] => 
+                                                                            [max_length] => 
+                                                                            [is_updatable] => 1
+                                                                            [is_insertable] => 1
+                                                                            [is_searchable] => 
+                                                                            [min_val] => 
+                                                                            [max_val] => 
+                                                                            [class_ref] => DataStructure Object
+ *RECURSION*
+                                                                        )
+
+                                                                )
+
+                                                        )
+
+                                                    [identity_field] => FieldInfo Object
+                                                        (
+                                                            [storage:ArrayObject:private] => Array
+                                                                (
+                                                                    [name] => sid
+                                                                    [type] => long
+                                                                    [is_nullable] => 
+                                                                    [is_key] => 1
+                                                                    [default_val] => 
+                                                                    [is_identity] => 
+                                                                    [is_unique] => 1
+                                                                    [min_length] => 
+                                                                    [max_length] => 
+                                                                    [is_updatable] => 1
+                                                                    [is_insertable] => 1
+                                                                    [is_searchable] => 
+                                                                    [min_val] => 
+                                                                    [max_val] => 
+                                                                    [is_autoincrement] => 1
+                                                                )
+
+                                                        )
+
+                                                    [field_name_to_index:DataStructure:private] => Array
+                                                        (
+                                                            [sid] => 0
+                                                            [domainId] => 1
+                                                            [creatorDto] => 2
+                                                            [supportDto] => 3
+                                                        )
+
+                                                )
+
+                                        )
+
+                                )
+
+                        )
+
+                    [identity_field] => FieldInfo Object
+                        (
+                            [storage:ArrayObject:private] => Array
+                                (
+                                    [name] => sid
+                                    [type] => long
+                                    [is_nullable] => 
+                                    [is_key] => 1
+                                    [default_val] => 
+                                    [is_identity] => 
+                                    [is_unique] => 1
+                                    [min_length] => 
+                                    [max_length] => 
+                                    [is_updatable] => 1
+                                    [is_insertable] => 1
+                                    [is_searchable] => 
+                                    [min_val] => 
+                                    [max_val] => 
+                                    [is_autoincrement] => 1
+                                )
+
+                        )
+
+                    [field_name_to_index:DataStructure:private] => Array
+                        (
+                            [sid] => 0
+                            [domainId] => 1
+                            [praiseDto] => 2
+                        )
+
+                )
+
+        )
+
+)
+
+
+Time: 0 seconds, Memory: 3.50Mb
+
+OK (1 test, 0 assertions)

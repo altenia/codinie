@@ -44,6 +44,9 @@ class DataStructure
 	/** Array of field descriptions **/
 	public $field_descriptions = array();
 	
+	/** The pointer to the identity field **/
+	public $identity_field = null;
+	
 	/** Hashmap field name to index **/
 	private $field_name_to_index = array();
 	
@@ -143,6 +146,11 @@ class DataStructure
 		$field_attributes['indexes'][] = $index_name;
 		$field_attributes['is_unique'] = $unique;
 	}
+	
+	function set_identity_field(&$field_description)
+	{
+		$this->identity_field = $field_description;
+	}
 }
 
 /**
@@ -178,9 +186,9 @@ class DataSchema
 	/**
 	 * Returns the entity
 	 */
-	function &get_entity($entity_name)
+	function get_entity($entity_name)
 	{
-		return array_key_exists($name, $this->entities) ? $this->entities[$name] : null;
+		return array_key_exists($entity_name, $this->entities) ? $this->entities[$entity_name] : null;
 	}
 }
 	
