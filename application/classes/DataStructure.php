@@ -5,7 +5,9 @@
  */
 class FieldInfo extends ArrayObject
 {
-	/*public $name;
+	/*
+	public $name; // field name, if not set
+	public $column_name; // name of the column
 	public $type;
 	public $is_nullable;
 	public $is_key;
@@ -15,11 +17,18 @@ class FieldInfo extends ArrayObject
 	public $max_length;
 	public $searchable;
 	public $min_val;
-	public $max_val;*/
+	public $max_val;
+	public $class_ref; // pointer to another DataStructure
+	*/
 	
 	function __construct(){ 
         parent::__construct(array(), ArrayObject::ARRAY_AS_PROPS); 
     } 
+	
+	public function get_name()
+	{
+		return $this->name;
+	}
 }
 
 /**
