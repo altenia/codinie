@@ -17,7 +17,7 @@
         <ul>
 <li><a href="<?php echo route_url($this, 'Home', 'index'); ?>">HOME</a></li>
 <li><a href="<?php echo route_url($this, 'Project', 'index'); ?>">PROJECTS</a></li>
-<li><a href="<?php echo route_url($this, 'Admin', 'index'); ?>">ADMIN</a></li>
+<li><a href="<?php echo route_url($this, 'Admin_Main', 'index'); ?>">ADMIN</a></li>
 		</ul>
 				</div>
 			</div>

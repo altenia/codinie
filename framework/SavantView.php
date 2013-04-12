@@ -1,6 +1,6 @@
 <?php
 
-require_once 'Savant3.php';
+require_once LIB_PATH . 'Savant3.php';
 
 /**
  * The base class of all Controllers
@@ -9,7 +9,7 @@ require_once 'Savant3.php';
  */
 class SavantView extends View {
 
-	private $templateName;
+  private $resource_name; // the actual recource name derived from the view name
 	private $template;
 	
 	/**
@@ -24,15 +24,16 @@ class SavantView extends View {
 	/**
 	 * Sets the name of the view
 	 */
-	public function setName($viewName)
+	public function set_name($view_name)
 	{
-		$this->templateName = $viewName . '.tpl.php';
+    $this->view_name = $view_name;
+		$this->resource_name = $view_name . '.tpl.php';
 	}
 
 	/**
 	 * Sets the model to be used
 	 */
-	public function setModel($key, $value)
+	public function set_model($key, $value)
 	{
 		$this->template->$key = $value;
 	}
@@ -41,6 +42,7 @@ class SavantView extends View {
 		if (property_exists($this, $property)) {
 			return $this->$property;
 		}
+    return null;
 	}
 	public function __set($key, $value) {
 		$this->template->$key = $value;
@@ -50,12 +52,12 @@ class SavantView extends View {
 	 * Renders
 	 */
 	public function render() {
-		$this->template->display($this->templateName);
+		$this->template->display($this->resource_name);
 	}
 	
 	public function __toString()
 	{
-		return $this->template->getOutput($this->templateName);
+		return $this->template->getOutput($this->resource_name);
 	}
 
 }

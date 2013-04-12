@@ -1,0 +1,4 @@
+2013-04-12 17:39:56 - INFO --> Project [quantilize]: Code generated with template [db_posgresql_ddl].
+2013-04-12 17:39:56 - INFO --> Project [quantilize]: Code generated with template [scala_entity].
+2013-04-12 17:43:18 - INFO --> Project [quantilize]: Code generated with template [db_posgresql_ddl].
+2013-04-12 17:43:18 - INFO --> Project [quantilize]: Code generated with template [scala_entity].
