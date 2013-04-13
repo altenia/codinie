@@ -1,0 +1,39 @@
+<h3>Templates <small><a href="{{context_path}}/index.php?_c=Admin_Main&_a=template_form">Create new</a></small></h3>
+
+<form name="ListTemplates" action="<?php echo route_url($this, 'Admin_Main', 'template_list'); ?>" method="get">
+<input type="text" name="pattern" value="{{pattern}}" /> <input name="submit" type="submit" value="Filter" />
+</form>
+
+{% if templates %}
+<table class="table">
+	<thead>
+		<tr>
+			<td>Template</td>
+			<td>Description</td>
+			<td>Unit</td>
+		</tr>
+	</thead>
+	<tbody>
+{% for template in templates %}
+		<tr>
+			<td><a href="{{context_path}}/index.php?_c=Admin_Main&_a=template_form&id={{template.id}}">{{#template}}{{id}}{{/template}}</a></td>
+			<td>{{template.description}}</td>
+			<td>{{template.unit}}</td>
+		</tr>
+{{/templates}}
+    <tr>
+	</tbody>
+</table>
+</form>
+{% endif %}
+
+
+{{#template_content}}
+<form name="FormTemplate" action="<?php echo route_url($this, 'Admin_Main', 'template_form'); ?>" method="post">
+	<input type="hidden" name="template_name" value="{{template_name}}" /> 
+	<textarea name="" class="input-xxlarge" rows="20" >
+{{template_content}}
+	</textarea>
+	<input name="submit" type="submit" value="Filter" />
+</form>
+{{/template_content}}
