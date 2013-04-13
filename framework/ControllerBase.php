@@ -36,7 +36,7 @@ class ControllerBase {
     public function renderView()
     {
 		if (!empty($this->view)) {
-			View::set_global('contextPath', $this->contextPath);
+			View::set_global('context_path', $this->context_path);
 			$this->view->render();
 		}
     }
@@ -54,8 +54,8 @@ class ControllerBase {
     $this->path_info = $_SERVER['PATH_INFO'];
   }
       $this->request_method = $_SERVER['REQUEST_METHOD'];
-  // contextPath is what comes just before /index.php
-      $this->contextPath = str_replace("/index.php", "", $_SERVER['SCRIPT_NAME']);
+  // context_path is what comes just before /index.php
+      $this->context_path = str_replace("/index.php", "", $_SERVER['SCRIPT_NAME']);
   }
 	
 	/**
@@ -80,7 +80,7 @@ class ControllerBase {
    */
   public function create_view($view_name)
   {
-    $local_view_path = Dispatcher::instance()->module_path . $this->module_name . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR;
+    $local_view_path = $this->get_module_path() . 'views' . DIRECTORY_SEPARATOR;
     return View::create($view_name, $local_view_path);
   }
   
@@ -145,4 +145,8 @@ class ControllerBase {
 		header('Location: ' . $url);
 	}
 	
+	public function get_module_path()
+	{
+		return Dispatcher::instance()->module_path . $this->module_name . DIRECTORY_SEPARATOR;;
+	}
 }

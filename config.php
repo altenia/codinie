@@ -18,7 +18,7 @@ define('VIEWS_PATH', APP_PATH . 'views/');
 define('MODULES_PATH', APP_PATH . 'modules/');
 
 define('USE_PATH_INFO', false);
-define('VIEW_CLASS', 'PhpView'); // Available views: PhpView, SavantView
+define('VIEW_CLASS', 'SavantView'); // Available views: PhpView, SavantView, MoustacheView
 
 
 //////////////////////////////////////////////////

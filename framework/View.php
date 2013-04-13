@@ -45,9 +45,8 @@ abstract class View {
    * @param string $view_name     The name of the view (notice, view name is usually template name w/o the extension)
    * @param string $template_path The path where the templates are. If non  is provided, searches in the common view path.
 	 */
-	public static function create($view_name, $template_path = null)
+	public static function create($view_name, $template_path = null, $view_class_name = VIEW_CLASS)
 	{
-		$view_class_name = VIEW_CLASS;
 		require_once FRAMEWORK_PATH . $view_class_name . '.php';
 		$view = new $view_class_name;
 		$view->set_name($view_name);

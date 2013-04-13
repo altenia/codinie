@@ -3,7 +3,7 @@
 require_once LIB_PATH . 'Savant3.php';
 
 /**
- * The base class of all Controllers
+ * The Savant3 template abstraction class
  *
  * @author Young Suk Ahn
  */
@@ -20,6 +20,10 @@ class SavantView extends View {
         $this->template = new Savant3();
         $this->template->setPath('template', VIEWS_PATH);
     }
+	public function add_path($template_path) {
+		parent::add_path($template_path);
+		$this->template->setPath('template', array($template_path, VIEWS_PATH));
+	}
 	
 	/**
 	 * Sets the name of the view

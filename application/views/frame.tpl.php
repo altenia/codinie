@@ -1,8 +1,8 @@
 <html>
 <head>
 	<title>[Codini] <?php echo $this->title; ?></title>
-	<link rel="stylesheet" href="<?php echo $this->contextPath; ?>/public/bootstrap/css/bootstrap.css">
-	<script src="<?php echo $this->contextPath; ?>/public/require-jquery.js" data-main="<?php echo $this->require_js_main; ?>"></script>
+	<link rel="stylesheet" href="<?php echo $this->context_path; ?>/public/bootstrap/css/bootstrap.css">
+	<script src="<?php echo $this->context_path; ?>/public/require-jquery.js" data-main="<?php echo $this->require_js_main; ?>"></script>
 </head>
 <body>
 	<div class="container">

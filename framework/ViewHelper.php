@@ -14,9 +14,9 @@ function route_url($context, $controller_name, $action_name = null, $qparams = n
 {
   $url = '';
   if(USE_PATH_INFO) {
-    $url = $context->contextPath . '/index.php/' . $controller_name . '/' . $action_name;
+    $url = $context->context_path . '/index.php/' . $controller_name . '/' . $action_name;
   } else {
-    $url = $context->contextPath . '/index.php?_c=' . $controller_name . '&_a=' . $action_name;
+    $url = $context->context_path . '/index.php?_c=' . $controller_name . '&_a=' . $action_name;
   }
   if (!empty($qparams) && is_array($qparams)) {
     if(USE_PATH_INFO) {
