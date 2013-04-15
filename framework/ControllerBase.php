@@ -15,6 +15,7 @@ require_once 'ViewHelper.php';
 class ControllerBase {
 
     protected $view; // The View template (usually the layout view)
+    protected $auto_render = false; // The Autorender view
     
     protected $request_uri; // from $_SERVER['REQUEST_URI'];
     protected $path_info;   // from $_SERVER['PATH_INFO'];
@@ -73,6 +74,8 @@ class ControllerBase {
 	public function post_action()
 	{
 		// 
+		if ($this->auto_render) {
+		}
 	}
   
   /**

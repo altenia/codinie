@@ -49,7 +49,7 @@
 				<input type="checkbox" name="project.active-template[]" value="a">
 				Save configuration
 			</label>
-			<input type="submit" name="ListTables" value="List Tables">
+			<input type="submit" name="ListTables" value="List Tables"> <input type="submit" name="InputForm" value="Copy/Paste Form">
 		</div>
 	</div>
 </form>

@@ -175,6 +175,9 @@ class DataSchema
 	/** name of the schema (e.g. database name) **/
 	public $name;
 	
+	/** name of the schema (e.g. database name) **/
+	public $description;
+	
 	/** associative array of instances of DataStructure **/
 	public $entities = array();
 	

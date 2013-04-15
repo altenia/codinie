@@ -6,18 +6,19 @@
  */
 class Loader {
 	
-  const LOC_FRAMEWORK = 0; // Loads from the framework directory
-  const LOC_SYSTEM    = 1; // Loads a class from the system wide include (php/include/classes)
-  const LOC_SITE      = 2; // Loads from the current site’s include (php/<site>/app_includes/classes)
-  const LOC_MODULE    = 3; // Loads from the current module’s
+  const LOC_LIB       = 0; // Loads from the framework directory
+  const LOC_FRAMEWORK = 1; // Loads from the framework directory
+  const LOC_SYSTEM    = 2; // Loads a class from the system wide include (php/include/classes)
+  const LOC_SITE      = 3; // Loads from the current site’s include (php/<site>/app_includes/classes)
 
   const CLASS_EXT = '.class.php';
   const MODULES_FOLDER = 'modules/';
 
   private static $_location_map = array(
+      Loader::LOC_LIB       => LIB_PATH, 
       Loader::LOC_FRAMEWORK => FRAMEWORK_PATH, 
-	  Loader::LOC_SYSTEM => CLASSES_PATH, 
-      Loader::LOC_SITE => CLASSES_PATH, 
+	  Loader::LOC_SYSTEM    => CLASSES_PATH, 
+      Loader::LOC_SITE      => CLASSES_PATH
     );
   
   /**

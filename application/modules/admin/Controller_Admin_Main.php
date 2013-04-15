@@ -40,9 +40,8 @@ class Controller_Admin_Main extends LayoutController {
 		$pattern = ifndef('pattern', $_GET, '*');
 		$breadcrumb = array( array('Templates', 'templates') );
 		
-		//$content = $this->create_view('admin_template_list');
+		$content = $this->create_view('admin_template_list');
 		//$content = View::create('admin_template_list', $this->get_module_path() . 'views' . DIRECTORY_SEPARATOR, 'MoustacheView');
-		$content = View::create('admin_template_list', $this->get_module_path() . 'views' . DIRECTORY_SEPARATOR, 'TwigView');
 
 		$content->pattern = $pattern;
 		$content->templates = TemplateManager::instance()->get_list($pattern);

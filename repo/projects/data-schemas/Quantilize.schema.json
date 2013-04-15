@@ -1,0 +1,57 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "http://www.quantilize.com/ActivityType#",
+	"title": "ActivityType",
+    "description": "schema for Quantlize user",
+    "type": "array",
+    "minItems": 0,
+	"items": { "$ref": "#/definitions/ActivityType" },
+	"uniqueItems": true,
+			
+    "definitions": {
+        "ActivityType": {
+			properties": {
+                "sid": { "type": "integer" },
+                "domainId": {
+                    "type": "string",
+                    "pattern": "^(/[^/]+)+$"
+                },
+                "creatorDto": {
+                    "type": "integer",
+                }
+				"createDt": {
+                    "type": "datetime",
+                    "pattern": "^(/[^/]+)+$"
+                }
+				"modifyCounter": {
+                    "type": "datetime",
+                    "pattern": "^(/[^/]+)+$"
+                }
+				"lastModifiedDt": {
+                    "type": "datetime",
+                    "pattern": "^(/[^/]+)+$"
+                }
+				"uuid": {
+                    "type": "string",
+                }
+				"userDto": {
+                    "type": "integer",
+                }
+				"userDto": {
+                    "type": "integer",
+                }
+				"projectDto": {
+                    "type": "integer",
+                }
+				"name": {
+                    "type": "integer",
+                }
+				"description": {
+                    "type": "integer",
+                }
+            },
+            "required": [ "domainId", "creatorDto", "uuid", "name" ],
+            "additionalProperties": false
+		}
+    }
+}

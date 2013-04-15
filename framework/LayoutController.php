@@ -13,7 +13,7 @@ require_once CLASSES_PATH . 'utils.php';
  */
 class LayoutController extends ControllerBase {
     
-	public $layout_view = 'frame';
+	public $layout_view_name = 'frame';
     
 	/**
 	 * Constructur. Calls the parent's constructor
@@ -26,7 +26,7 @@ class LayoutController extends ControllerBase {
 	public function pre_action()
 	{
 		parent::pre_action();
-		$this->view = View::create($this->layout_view);
+		$this->view = View::create($this->layout_view_name);
 	}
 
 }
