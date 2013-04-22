@@ -1,6 +1,6 @@
 <?php
 
-require_once LIB_PATH . 'Mustache/Autoloader.php';
+Loader::load('Mustache/Autoloader.php', Loader::LOC_LIB);
 Mustache_Autoloader::register();
 
 /**

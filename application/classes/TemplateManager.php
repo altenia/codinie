@@ -1,7 +1,13 @@
 <?php
+/**
+ *
+ */
+ 
+Loader::load('utils.php');
 
-require_once CLASSES_PATH . 'utils.php';
-
+/**
+ * Class that manages templates
+ */
 class TemplateManager 
 {
 	const TPL_FILE_SUFIX = '.tpl.php';

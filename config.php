@@ -13,12 +13,13 @@ define('LIB_PATH', SYS_PATH . 'lib/' );
 define('FRAMEWORK_PATH', SYS_PATH . 'framework/' );
 
 define('APP_PATH', SYS_PATH . 'application/');
-define('CLASSES_PATH', APP_PATH . 'classes/');
+define('SYSTEM_CLASSES_PATH', APP_PATH . 'classes/');
+define('SITE_CLASSES_PATH', SYSTEM_CLASSES_PATH);
 define('VIEWS_PATH', APP_PATH . 'views/');
 define('MODULES_PATH', APP_PATH . 'modules/');
 
 define('USE_PATH_INFO', false);
-define('VIEW_CLASS', 'SavantView'); // Available views: PhpView, SavantView, MoustacheView
+define('VIEW_CLASS', 'PhpView'); // Available views: PhpView, SavantView, MoustacheView
 
 
 //////////////////////////////////////////////////

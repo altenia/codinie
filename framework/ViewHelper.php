@@ -1,11 +1,18 @@
 <?php
+/**
+ * This file contains helper functions that generates view elements specific to the particular
+ * View, in this case PHP view (including Savant)
+ * 
+ * @todo: convert this into class
+ *
+ */
 
-require_once CLASSES_PATH . 'utils.php';
+Loader::load('utils.php', Loader::LOC_SYSTEM);
 
 /**
  * Generates the route url in terms of contreller & action
  * 
- * @context         object can be either controller or view object
+ * @context         object can be either controller or view object. It should contain context_path property in it.
  * @controller_name string the controller name
  * @action_name     string the action name
  * @qparams         array  query parameters

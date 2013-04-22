@@ -242,7 +242,7 @@ class Controller_Project extends CodiniController {
 	 */
 	private function get_ds_types()
 	{
-		return get_files(CLASSES_PATH . self::DS_INTROSPECTOR_PREFIX, '.php', '*');
+		return get_files(Loader::get_path(Loader::LOC_SITE) . self::DS_INTROSPECTOR_PREFIX, '.php', '*');
 	}
 
 	/**

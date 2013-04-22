@@ -13,7 +13,7 @@
 
 error_reporting(E_ALL | E_PARSE);
 require('config.php');
-require(FRAMEWORK_PATH . 'ClassLoader.php');
+require(FRAMEWORK_PATH . 'Loader.php');
 require(FRAMEWORK_PATH . 'Dispatcher.php');
 require(FRAMEWORK_PATH . 'KLogger.php');
 

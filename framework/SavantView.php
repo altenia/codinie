@@ -1,6 +1,6 @@
 <?php
 
-require_once LIB_PATH . 'Savant3.php';
+Loader::load('savant/Savant3b.php', Loader::LOC_LIB);
 
 /**
  * The Savant3 template abstraction class

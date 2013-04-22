@@ -1,7 +1,7 @@
 <?php
 
-require_once CLASSES_PATH . 'ProjectManager.php';
-require_once CLASSES_PATH . 'utils.php';
+require_once 'ProjectManager.php';
+Loader::load('utils.php', Loader::LOC_SYSTEM);
 
 /**
  * Project information stored in filesystem in XML format.

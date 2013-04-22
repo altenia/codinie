@@ -2,8 +2,8 @@
 defined('APP_PATH') or die('No direct script access.');
 
 require_once 'CodiniController.php';
-require_once CLASSES_PATH . 'ProjectManager_Xml.php';
-require_once CLASSES_PATH . 'utils.php';
+Loader::load('ProjectManager_Xml.php', Loader::LOC_SITE);
+Loader::load('utils.php', Loader::LOC_SYSTEM);
 
 /**
  * The main controller than handles the index
