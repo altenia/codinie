@@ -1,11 +1,15 @@
 <?php
 /**
- * The base class of all Controllers
+ * This file contains the implementation of the Loader class.
  *
- * @author Young Suk Ahn
+ * @author Young Suk Ahn <ysahn@altenia.com>
  */
-class Loader {
-	
+
+/**
+ * The Loader class contains static functions to load php libraries (files)
+ */
+class Loader
+{
   const LOC_LIB       = 0; // Loads from the framework directory
   const LOC_FRAMEWORK = 1; // Loads from the framework directory
   const LOC_SYSTEM    = 2; // Loads a class from the system wide include (php/include/classes)
@@ -13,6 +17,7 @@ class Loader {
 
   const CLASS_EXT = '.class.php';
 
+  // The alias to path mapping array
   private static $_location_map = array(
       Loader::LOC_LIB       => LIB_PATH, 
       Loader::LOC_FRAMEWORK => FRAMEWORK_PATH, 
@@ -21,54 +26,63 @@ class Loader {
     );
   
   /**
-   * Returns the 
+   * Returns the path given the location alias
+   * 
+   * @param string $location The location id 
+   * 
+   * @return string The actual path
    */
   public static function get_path($location) {
-	return self::$_location_map[$location];
+    return self::$_location_map[$location];
   }
-  
+
   /**
-   * Puts a mapping entry of location to the path in the table
+   * Registers a location mapping entry
+   * 
+   * @param string $location    The location id
+   * @param string $actual_path The actual path associated to the location id
+   * 
+   * @return none
    */
   public static function put_path($location, $actual_path) {
     self::$_location_map[$location] = $actual_path;
   }
-  
+
   /**
-   * Loads one or multiple class files
+   * Loads one or multiple php libraries (files)
    * 
-   * @param string|array $class_names
-   * @param string|int   $location    the location to look for the said class file
+   * @param string|array $lib_names The library (file) name (or list of class names) to load within the specified location
+   * @param string|int   $location  The location to look for the said class file
    *
+   * @return none
    */
-	public static function load($class_names, $location = Loader::LOC_SITE )
-	{
-    if (empty($class_names)) {
+  public static function load($lib_names, $location = Loader::LOC_SITE) {
+    if (empty($lib_names)) {
       return;
     }
-    $class_name_arr = null;
-    if (!is_array($class_names)) {
-      $class_name_arr = array($class_names);
+    $lib_name_arr = null;
+    if (!is_array($lib_names)) {
+      $lib_name_arr = array($lib_names);
     } else {
-      $class_name_arr = $class_names;
+      $lib_name_arr = $class_names;
     }
 
-    $class_path = null;
+    $lib_path = null;
     if ( array_key_exists($location, self::$_location_map)) {
-      $class_path = self::$_location_map[$location];
+      $lib_path = self::$_location_map[$location];
     } else {
-      $class_path = $location;
+      $lib_path = $location;
     }
     
-    foreach($class_name_arr as $class_name) {
-      if (substr_compare($class_name, '.php', -strlen('.php'), strlen('.php')) !== 0) {
-        $class_name .= Loader::CLASS_EXT;
+    foreach ($lib_name_arr as $lib_name) {
+      if (substr_compare($lib_name, '.php', -strlen('.php'), strlen('.php')) !== 0) {
+        $lib_name .= Loader::CLASS_EXT;
       }
       // Adds the last directory separator if necessary
-      if (substr($class_path, -1) != DIRECTORY_SEPARATOR) {
-        $class_path .= DIRECTORY_SEPARATOR;
+      if (substr($lib_path, -1) != DIRECTORY_SEPARATOR) {
+        $lib_path .= DIRECTORY_SEPARATOR;
       }
-      require_once $class_path . $class_name;
+      include_once $lib_path . $lib_name;
     }
-	}
+  }
 }

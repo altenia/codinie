@@ -1,7 +1,7 @@
 <?php 
 defined('APP_PATH') or die('No direct script access.');
 
-require_once 'CodiniController.php';
+require_once SHARED_MODULES_PATH . 'CodiniController.php';
 Loader::load('ProjectManager_Xml.php', Loader::LOC_SITE);
 Loader::load('utils.php', Loader::LOC_SYSTEM);
 
@@ -30,14 +30,14 @@ class Controller_Home extends CodiniController {
 	/**
 	 * The index action
 	 */
-    public function index()
+    public function action_index()
     {
 		$project_manager = new ProjectManager_Xml();
 		
 		$content = View::create('home_index');
 		$content->projects = $project_manager->get_list();
 		$this->view->content = $content;
-		$this->renderView();
+		$this->render_view();
     }
 	
 }

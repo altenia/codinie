@@ -1,10 +1,10 @@
 <project>
-	<name>Posgres Test</name>
+	<name>Posgress Test</name>
 	<owner>Young Suk Ahn</owner>
 	<language>Java</language>
 	<description></description>
-	<last-modif>13/03/21-08:55:12</last-modif>
-	<codegen-dest></codegen-dest>
+	<codegen-dest>C:\appservers\webapps\codini\repo/projects/project1</codegen-dest>
+	<last-modif>13/05/05-10:02:51</last-modif>
 	<data-source>
 		<type>Postgre</type>
 		<url>localhost</url>
@@ -15,7 +15,7 @@
 		<template name="db_posgresql_ddl" />
 	</active-templates>
 	<params>
-		<param name="prefix" value="Test                " />
+		<param name="prefix" value="Test                   " />
 		<param name="suffix" value="Ex" />
 	</params>
 </project>

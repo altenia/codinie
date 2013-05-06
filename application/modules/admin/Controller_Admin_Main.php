@@ -10,14 +10,14 @@ Loader::load('utils.php');
  *
  * @author Young Suk Ahn
  */
-class Controller_Admin_Main extends LayoutController {
-    
+class Controller_Admin_Main extends LayoutController 
+{
 	/**
 	 * Constructor. Calls the parent's constructor
 	 */
     public function __construct() {
         parent::__construct();
-		View::set_global('require_js_main', '/codini/public/admin_template_form');
+		View::set_shared_data('require_js_main', '/codini/public/admin_template_form');
     }
 
 	// Called by the framework
@@ -30,7 +30,7 @@ class Controller_Admin_Main extends LayoutController {
 	/**
 	 * The index action
 	 */
-    public function index()
+    public function action_index()
     {
 		$this->template_list();
     }
@@ -48,11 +48,11 @@ class Controller_Admin_Main extends LayoutController {
 		//print_r($content->templates);
 		
 		$this->view->content = $content;
-		$this->renderView();
+		$this->render_view();
 		
     }
 	
-	public function template_form()
+	public function action_template_form()
     {
 		$breadcrumb = array( array('Templates', 'templates') );
 		
@@ -87,8 +87,8 @@ class Controller_Admin_Main extends LayoutController {
 		$content->error_fields = $error_fields;
 		$this->view->content = $content;
 		
-		View::set_global('require_js_main', '/codini/public/admin_template_form');
-		$this->renderView();
+		View::set_shared_data('require_js_main', '/codini/public/admin_template_form');
+		$this->render_view();
     }
 	
 	private function get_templates($pattern = null)

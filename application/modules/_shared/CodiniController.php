@@ -15,7 +15,7 @@ class CodiniController extends LayoutController {
 	 */
     public function __construct() {
         parent::__construct();
-		View::set_global('require_js_main', '/codini/public/main');
+		View::set_shared_data('require_js_main', '/codini/public/main');
     }
 
 	// Called by the framework

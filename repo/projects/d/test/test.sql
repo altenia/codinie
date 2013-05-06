@@ -8,16 +8,15 @@
 CREATE TABLE PraiseDto (
 	sid LONG NOT NULL,
 	domain_id VARCHAR(64),
-	domain_id VARCHAR(64),
-	creator_dto ,
-	user_dto 
+	creator_dto class,
+	support_dto class
  
 )
  
 CREATE TABLE PraiseSupportDto (
 	sid LONG NOT NULL,
 	domain_id VARCHAR(64),
-	creator_dto 
+	praise_dto class
  
 )
 

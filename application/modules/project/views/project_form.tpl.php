@@ -1,5 +1,5 @@
 
-<form class="form-horizontal" name="Project" action="<?php echo route_url($this, 'Project', 'form'); ?>" method="post">
+<form class="form-horizontal" name="Project" action="<?php echo route_url($this, 'Project_Main', 'form'); ?>" method="post">
 <?php
 	$readonly_attr = ($this->is_new) ? '' : 'readonly="readonly"' ;
 	$submit_label = ($this->is_new) ? 'Create' : 'Update' ;

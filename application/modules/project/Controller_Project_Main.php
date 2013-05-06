@@ -1,7 +1,7 @@
 <?php 
 defined('APP_PATH') or die('No direct script access.');
 
-require_once 'CodiniController.php';
+require_once SHARED_MODULES_PATH . 'CodiniController.php';
 Loader::load('TemplateManager.php');
 Loader::load('ProjectManager_Xml.php');
 Loader::load('DataStructure_Serializer.php');
@@ -12,7 +12,7 @@ Loader::load('CodeGen_PhpTemplate.php');
  *
  * @author Young Suk Ahn
  */
-class Controller_Project extends CodiniController {
+class Controller_Project_Main extends CodiniController {
     
 	const DS_INTROSPECTOR_PREFIX = 'Ds_Introspector_';
     const MEMBER_SEPARATOR = '_';
@@ -35,20 +35,20 @@ class Controller_Project extends CodiniController {
 	/**
 	 * The index action
 	 */
-    public function index()
+    public function action_index()
     {
         $project_manager = new ProjectManager_Xml();
 		
-		$content = View::create('project_index');
+		$content = $this->create_view('project_index');
 		$content->projects = $project_manager->get_list();
 		$this->view->content = $content;
-		$this->renderView();
+		$this->render_view();
     }
 	
 	/**
 	 * The index action
 	 */
-    public function form()
+    public function action_form()
     {
 		$project_manager = ProjectManager::instance();
 		$project_details = null;
@@ -70,7 +70,7 @@ class Controller_Project extends CodiniController {
 				}
 				$project_manager->save($project_details);
 				
-				$is_new = to_bool($this->getRequestParam('is_new'));
+				$is_new = to_bool($this->get_request_param('is_new'));
 				$action = "Updated";
 				if ($is_new) {
 					$action = "Created";
@@ -78,12 +78,12 @@ class Controller_Project extends CodiniController {
 				$this->get_logger()->logInfo('Project [' . $project_id . '] updated.');
 			
 				$this->redirect(
-						route_url($this, 'Project', 'work_on', array('prjid' => $project_id))
+						route_url($this->request_context, 'Project_Main', 'work_on', array('prjid' => $project_id))
 					);
 			}
         }
 		
-		$content = View::create('project_form');
+		$content = $this->create_view('project_form');
 		if ($this->is_method_get()) {
 			$project_id = ifndef('prjid', $_GET, null);
 			
@@ -103,14 +103,14 @@ class Controller_Project extends CodiniController {
 		$content->ref_ds_types = $this->get_ds_types();
 		$content->templates = TemplateManager::instance()->get_list();
 		$this->view->content = $content;
-		$this->renderView();
+		$this->render_view();
 
     }
 
 	/**
 	 * The lists projects
 	 */
-    public function work_on()
+    public function action_work_on()
     {
         $curr_project = $this->load_project();
 		//print_r($curr_project);die();
@@ -126,17 +126,17 @@ class Controller_Project extends CodiniController {
 		$project_manager = ProjectManager::instance();
 		
 		$curr_project = $this->get_current_project();
-		$breadcrumb = array( array(route_url($this, 'Project', 'index'), 'Project')
+		$breadcrumb = array( array(route_url($this->request_context, 'Project_Main', 'index'), 'Project')
 			, array(null, $curr_project['name']) );
-		View::set_global('breadcrumb', $breadcrumb);
+		View::set_shared_data('breadcrumb', $breadcrumb);
 		
         if ($this->is_method_get()) {
-			$content = View::create('project_main');
+			$content = $this->create_view('project_main');
 			
 			$content->ref_ds_types = $this->get_ds_types();
 			$content->project_details = $curr_project;
 			$this->view->content = $content;
-			$this->renderView();
+			$this->render_view();
         } else if ($this->is_method_post()) {
 			$this->display_tables();
         }
@@ -147,13 +147,13 @@ class Controller_Project extends CodiniController {
 		$conn_details = $this->retrieve_conn_details($_POST);
 		
 		$curr_project = $this->get_current_project();
-		$breadcrumb = array( array(route_url($this, 'Project', 'index'), 'Project')
+		$breadcrumb = array( array(route_url($this->request_context, 'Project_Main', 'index'), 'Project')
 			, array(null, $curr_project['name'])  );
-		View::set_global('breadcrumb', $breadcrumb);
+		View::set_shared_data('breadcrumb', $breadcrumb);
 		
 		if (!empty($conn_details['ds_type'])) {
-			$content = View::create('project_main');
-			$content->set_model('title', 'Display Table');
+			$content = $this->create_view('project_main');
+			$content->title = 'Display Table';
 
 			$content->conn_details = $conn_details;
 			$content->project_details = $curr_project;
@@ -168,7 +168,7 @@ class Controller_Project extends CodiniController {
 			//print_r($tables); die();
 			
 			$this->view->content = $content;
-			$this->renderView();
+			$this->render_view();
 		} else {
 			die('No Type selected');
 		}
@@ -177,19 +177,19 @@ class Controller_Project extends CodiniController {
 	/**
 	 * action that generates code
 	 */
-	public function generate_code()
+	public function action_generate_code()
     {
-		$table = $_POST['tables'];
+		$table = $this->get_request_param('tables');
 		$curr_project = $this->get_current_project();
-		$breadcrumb = array( array(route_url($this, 'Project', 'index'), 'Project')
-			, array(route_url($this, 'Project', 'work_on', array('prjid'=>$curr_project['id'])), $curr_project['name'])
+		$breadcrumb = array( array(route_url($this->request_context, 'Project_Main', 'index'), 'Project')
+			, array(route_url($this->request_context, 'Project_Main', 'work_on', array('prjid'=>$curr_project['id'])), $curr_project['name'])
 			, array(null, $table)   );
-		View::set_global('breadcrumb', $breadcrumb);
+		View::set_shared_data('breadcrumb', $breadcrumb);
 
 		$conn_details = $this->retrieve_conn_details($_POST);
 		$output_file = true;
 
-		$content = View::create('project_codegen');
+		$content = $this->create_view('project_codegen');
 		$content->table_name = $table;
 		
 		$ds_introspector = $this->get_ds_introspector($conn_details);
@@ -234,7 +234,7 @@ class Controller_Project extends CodiniController {
 		
 		$content->generated_code = $generated_code;
 		$this->view->content = $content;
-		$this->renderView();
+		$this->render_view();
     }
   	
 	/**
@@ -263,7 +263,7 @@ class Controller_Project extends CodiniController {
 	{
 		$dbInstrospectorClassName =  self::DS_INTROSPECTOR_PREFIX . $conn_details['ds_type'];
 
-		require_once CLASSES_PATH . $dbInstrospectorClassName . '.php';
+		require_once SITE_CLASSES_PATH . $dbInstrospectorClassName . '.php';
 
 		$ds_introspector = new $dbInstrospectorClassName();
 		$ds_introspector->create_connection($conn_details['url'], $conn_details['username'], $conn_details['password'], $conn_details['db_name']);

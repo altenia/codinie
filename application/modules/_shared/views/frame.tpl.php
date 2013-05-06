@@ -15,9 +15,9 @@
 			<div class="span3">
 				<div class="well sidebar-nav">
         <ul>
-<li><a href="<?php echo route_url($this, 'Home', 'index'); ?>">HOME</a></li>
-<li><a href="<?php echo route_url($this, 'Project', 'index'); ?>">PROJECTS</a></li>
-<li><a href="<?php echo route_url($this, 'Admin_Main', 'index'); ?>">ADMIN</a></li>
+<li><a href="<?php echo route_url($this->request_context, 'Home', 'index'); ?>">HOME</a></li>
+<li><a href="<?php echo route_url($this->request_context, 'Project_Main', 'index'); ?>">PROJECTS</a></li>
+<li><a href="<?php echo route_url($this->request_context, 'Admin_Main', 'index'); ?>">ADMIN</a></li>
 		</ul>
 				</div>
 			</div>
@@ -38,7 +38,7 @@
 			</div>
 		</div>
 		<footer>
-        <p>Codini (version <?php echo APP_VERSION; ?>) | <a href="<?php echo route_url($this, 'Content', 'show', array( 'page'=>'about.html')); ?>">About<a></p>
+        <p>Codini (version <?php echo APP_VERSION; ?>) | <a href="<?php echo route_url($this->request_context, 'Content', 'show', array( 'page'=>'about.html')); ?>">About<a></p>
 		</footer>
 	</div>
 </body>

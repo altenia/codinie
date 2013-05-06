@@ -1,7 +1,7 @@
 <?php 
 defined('APP_PATH') or die('No direct script access.');
 
-require_once 'CodiniController.php';
+require_once SHARED_MODULES_PATH . 'CodiniController.php';
 Loader::load('utils.php');
 
 /**
@@ -19,7 +19,7 @@ class Controller_Content extends CodiniController {
     }
 
 	// Called by the framework
-	public function beforeAction()
+	public function before_action()
 	{
 		parent::beforeAction();
 		$this->view->title = "";
@@ -28,12 +28,12 @@ class Controller_Content extends CodiniController {
 	/**
 	 * The index action
 	 */
-    public function index()
+    public function action_index()
     {
-        $this->page();
+        $this->action_show();
     }
     
-    public function show()
+    public function action_show()
     {
 		$page = $_GET['page'];
 		$file_path = SYS_PATH . 'pages/' . $page;
@@ -49,6 +49,6 @@ class Controller_Content extends CodiniController {
 		fclose($fh);
 
 		$this->view->content = $content;
-		$this->renderView();
+		$this->render_view();
 	}
 }

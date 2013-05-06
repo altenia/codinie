@@ -13,12 +13,10 @@ class PraiseDto {
 	public $sid;
 	/** The field of type string **/
 	public $domain_id;
-	/** The field of type string **/
-	public $domain_id;
-	/** The field of type  **/
+	/** The field of type class **/
 	public $creator_dto;
-	/** The field of type  **/
-	public $user_dto;
+	/** The field of type class **/
+	public $support_dto;
 
 	/**
 	 * Validates 

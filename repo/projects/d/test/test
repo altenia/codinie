@@ -8,16 +8,15 @@
 CREATE TABLE PraiseDto (
 	sid BIGINT NOT NULL,
 	domain_id VARCHAR(64),
-	domain_id VARCHAR(64),
-	creator_dto ,
-	user_dto 
+	creator_dto com.seednia.module.core.user.dto.UserDto,
+	support_dto BIGINT
  
 )
  
 CREATE TABLE PraiseSupportDto (
 	sid BIGINT NOT NULL,
 	domain_id VARCHAR(64),
-	creator_dto 
+	praise_dto BIGINT
  
 )
 

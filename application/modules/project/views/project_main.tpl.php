@@ -1,4 +1,4 @@
-<div style="float:right"><a href="<?php echo route_url($this, 'Project', 'form', array('prjid' => $this->project_details['id'])); ?>">Edit project details</a></div>
+<div style="float:right"><a href="<?php echo route_url($this->request_context, 'Project_Main', 'form', array('prjid' => $this->project_details['id'])); ?>">Edit project details</a></div>
 <h3>Generate Code</h3>
 <h4>Configure Data Schema source</h4>
 <form class="form-horizontal" name="Connect" action="" method="post">
@@ -59,7 +59,7 @@
 <strong>No tables were found</strong>
 <?php } else  { ?>
 <h4>Select Tables for the code generation</h4>
-<form name="Generate" action="<?php echo route_url($this, 'Project', 'generate_code'); ?>" method="post">
+<form name="Generate" action="<?php echo route_url($this->request_context, 'Project_Main', 'generate_code'); ?>" method="post">
 <input type="hidden" name="project.data-source.type" value="<?php echo $this->conn_details['ds_type']; ?>" />
 <input type="hidden" name="project.data-source.url" value="<?php echo $this->conn_details['url']; ?>" />
 <input type="hidden" name="project.data-source.username" value="<?php echo $this->conn_details['username']; ?>" />

@@ -1052,7 +1052,7 @@ class Savant3 {
 			unset($tpl);
 
 			// ysahn
-			foreach (View::get_globals() as $key => $val) {
+			foreach (View::get_shared_data() as $key => $val) {
 				if (!isset($this->$key)) {
 					$this->$key = $val;
 				}

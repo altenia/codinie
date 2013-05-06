@@ -14,8 +14,8 @@
 	<tbody>
 	<?php foreach ($this->projects as $project) { ?>
 		<tr>
-			<td><a href="<?php echo route_url($this, 'Project', 'form', array('prjid' => $project->id)); ?>">edit</a></td>
-			<td><a href="<?php echo route_url($this, 'Project', 'work_on', array('prjid' => $project->id)); ?>"><?php echo $project->name ?></a></td>
+			<td><a href="<?php echo route_url($this, 'Project_Main', 'form', array('prjid' => $project->id)); ?>">edit</a></td>
+			<td><a href="<?php echo route_url($this, 'Project_Main', 'work_on', array('prjid' => $project->id)); ?>"><?php echo $project->name ?></a></td>
 			<td><?php echo $project->owner ?></td>
 			<td><?php echo $project->language ?></td>
 			<td><?php echo $project->created ?></td>
@@ -24,4 +24,4 @@
 	</tbody>
 </table>
 <?php } ?>
-<a class="btn" href="<?php echo route_url($this, "Project", "form"); ?>">Create New Project</a>
+<a class="btn" href="<?php echo route_url($this, "Project_Main", "form"); ?>">Create New Project</a>

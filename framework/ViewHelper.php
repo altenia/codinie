@@ -12,28 +12,30 @@ Loader::load('utils.php', Loader::LOC_SYSTEM);
 /**
  * Generates the route url in terms of contreller & action
  * 
- * @context         object can be either controller or view object. It should contain context_path property in it.
- * @controller_name string the controller name
- * @action_name     string the action name
- * @qparams         array  query parameters
+ * @param object $context         Can be either controller or view object. It should contain context_path property in it.
+ * @param string $controller_name The controller name
+ * @param string $action_name     The action name
+ * @param array  $qparams         The query parameters
+ *
+ * @return string The URL of the page that maps to controller/action 
  */
 function route_url($context, $controller_name, $action_name = null, $qparams = null)
 {
   $url = '';
-  if(USE_PATH_INFO) {
+  if (Dispatcher::instance()->use_path_info) {
     $url = $context->context_path . '/index.php/' . $controller_name . '/' . $action_name;
   } else {
     $url = $context->context_path . '/index.php?_c=' . $controller_name . '&_a=' . $action_name;
   }
   if (!empty($qparams) && is_array($qparams)) {
-    if(USE_PATH_INFO) {
+    if (Dispatcher::instance()->use_path_info) {
       $url .= '?';
     } else {
       $url .= '&';
     }
     $qparams_list = array();
-    foreach($qparams as $key => $value) {
-      $qparams_list[] = $key . '=' . urlencode( $value );
+    foreach ($qparams as $key => $value) {
+      $qparams_list[] = $key . '=' . urlencode($value);
     }
     $url .= implode('&', $qparams_list);
   }
@@ -80,14 +82,21 @@ function generate_select_html($el_name, $list, $key_field, $display_fields, $sel
   return $html;
 }
 
-function array_to_string($map, $delim = "\n")
-{
-	$retval = null;
-	if(is_array($map)) {
-		$retval = '';
-		foreach($map as $name => $val) {
-			$retval .= $name . '=' . $val . $delim;
-		}
-	}
-	return $retval;
+/**
+ * Converts associative array to string of format name1=value1<delim>[name2=value2<delim>]
+ * 
+ * @param array  $map   The associative array map
+ * @param string $delim The deliminter that separates an entry 
+ *
+ * @return string The strin gof key value pairs
+ */
+function array_to_string($map, $delim = "\n") {
+  $retval = null;
+  if (is_array($map)) {
+    $retval = '';
+    foreach ($map as $name => $val) {
+      $retval .= $name . '=' . $val . $delim;
+    }
+  }
+  return $retval;
 }
