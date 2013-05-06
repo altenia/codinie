@@ -1,7 +1,7 @@
 [git]
 Initialize a folder: git init
 Adding: git add .
-Commiting to local repository: git commit
+Commiting to local repository: git commit -m "comment"
 Creating branch: git branch <branchname>
 Using branch: git checkout <branchname>
 Connecting to remote repo: git remote add origin <remote_url>
