@@ -18,3 +18,5 @@ Using
 -----
 Go to the Codini home, and create a new project.
 
+Suppported format
+
