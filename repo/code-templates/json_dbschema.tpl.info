@@ -6,4 +6,4 @@ language=json
 unit=schema
 ;file_name="$schema_name . '.extension'"
 ; The suffix that is appended to the generated file name (e.g. .xml).
-file_suffix=schema.json
+file_suffix=.schema.json

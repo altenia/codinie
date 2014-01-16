@@ -36,7 +36,6 @@ class CodeGen_PhpTemplate {
 						'params' => $params
 						);
 				$path_id = $this->get_genpath($template_details, $schema, $entity);
-
 				$applied_template[$path_id] = $this->apply_template($template_input, $template_details['content']);
 			}
 		}

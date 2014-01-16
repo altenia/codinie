@@ -68,7 +68,7 @@
 <table class="table">
 	<thead>
 		<tr>
-			<td>Select</td>
+			<td><a id="toggle_select">Select</a></td>
 			<td>Table name</td>
 			<td>Num Columns</td>
 		</tr>
@@ -76,7 +76,7 @@
 	<tbody>
 <?php foreach($this->tables as $table) { ?>
 		<tr>
-			<td><input name="tables" type="checkbox" value="<?php echo $table['table_name']; ?>" /></td>
+			<td><input name="tables[]" type="checkbox" value="<?php echo $table['table_name']; ?>" /></td>
 			<td><?php echo $table['table_name']; ?></td>
 			<td><?php echo $table['column_count']; ?></td>
 		</tr>
@@ -87,4 +87,13 @@
 	</tbody>
 </table>
 </form>
+<script>
+	$(document).ready(function(){
+		var checked = false;
+		$("#toggle_select").on("click", function(){
+			checked = !checked;
+			$("[name=tables]").prop('checked', checked);
+		})
+	})
+</script>
 <?php } ?>

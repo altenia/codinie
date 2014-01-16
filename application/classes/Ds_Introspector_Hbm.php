@@ -55,6 +55,20 @@ class Ds_Introspector_Hbm extends Ds_Introspector
 		}
 		return $retval;
 	}
+
+	/**
+	 * Get multime schemas
+	 * @param  array $table_names Array of table names
+	 * @return DataSchema         
+	 */
+	function get_schemas($table_names)
+	{
+		$retval = array();
+		foreach($table_names as $table_name ) {
+			$retval[] = $this->get_schema($table_name);
+		}
+		return $retval;
+	}
 		
 	/**
 	 * Returns the table metadata in form of associative array
