@@ -180,7 +180,6 @@ class Controller_Project_Main extends CodiniController {
     public function action_generate_code()
     {
         $tables = $this->get_request_param('tables');
-print_r($tables); 
         $tables_csv = '{' . implode(',', $tables) . '}';
         $curr_project = $this->get_current_project();
         $breadcrumb = array( array(route_url($this->request_context, 'Project_Main', 'index'), 'Project')
@@ -189,14 +188,14 @@ print_r($tables);
         View::set_shared_data('breadcrumb', $breadcrumb);
 
         $conn_details = $this->retrieve_conn_details($_POST);
-        $output_file = true;
+        $output_file = false;
 
         $content = $this->create_view('project_codegen');
         $content->table_name = $tables[0];
         
         $generated_code = array();
         $ds_introspector = $this->get_ds_introspector($conn_details);
-        $schema = $ds_introspector->get_schema($tables[0]);
+        $schema = $ds_introspector->get_schema($tables);
         
         $serializer = new DataStructure_Serializer_Xml();
         $content->schema_xml = $serializer->serialize($schema);

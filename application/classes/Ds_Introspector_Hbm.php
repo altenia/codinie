@@ -74,16 +74,16 @@ class Ds_Introspector_Hbm extends Ds_Introspector
 	 * Returns the table metadata in form of associative array
 	 * The row entry is of form: {field_name, type, length, is_nullable, key, default, extra
 	 */
-	function get_schema($table_name)
+	function get_schema($table_names)
 	{
+		$schema = new DataSchema($this->db_name);
+foreach ($table_names as $table_name) {
 		$hbm = new SimpleXMLElement($this->url . $table_name, NULL, TRUE);
 
 		// List of fields with unresolved references
 		$unresolved_references = array();
 		
-		$schema = null;
 		if ($hbm) {
-			$schema = new DataSchema($this->db_name);
 			foreach($hbm->class as $class) { 
 				$class_attrs = $class->attributes();
 				$data_struct = $schema->create_entity((string)$class_attrs->name);
@@ -141,6 +141,7 @@ class Ds_Introspector_Hbm extends Ds_Introspector
 				$unresolved_ref->class_ref = $class_ref;
 			}
 		}
+}
 
 		return $schema;
 	}
