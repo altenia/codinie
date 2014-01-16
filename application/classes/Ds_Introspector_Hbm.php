@@ -71,8 +71,9 @@ class Ds_Introspector_Hbm extends Ds_Introspector
 	}
 		
 	/**
-	 * Returns the table metadata in form of associative array
-	 * The row entry is of form: {field_name, type, length, is_nullable, key, default, extra
+	 * Returns the schema which contains a list of table definitions
+	 * @param  array $table_names list of tablenames to include in the schema
+	 * @return DataSchema              [description]
 	 */
 	function get_schema($table_names)
 	{

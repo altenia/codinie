@@ -57,10 +57,12 @@ class Ds_Introspector_JsonSchema extends Ds_Introspector
 	}
 		
 	/**
-	 * Returns the table metadata in form of associative array
-	 * The row entry is of form: {field_name, type, length, is_nullable, key, default, extra
+	 * Returns the schema which contains a list of table definitions
+	 * @todo - change from single tablename to array of tablenames
+	 * @param  array $table_names list of tablenames to include in the schema
+	 * @return DataSchema              [description]
 	 */
-	function get_schema($table_name)
+	function get_schema($table_names)
 	{
 		$json_schema = new json_decode ($this->url . $table_name, true);
 		

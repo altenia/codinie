@@ -50,8 +50,10 @@ class Ds_Introspector_MySqli extends Ds_Introspector
 	}
 	
 	/**
-	 * Returns the data schema 
-	 * The row entry is of form: {field_name, type, length, nullable, key, default, extra
+	 * Returns the schema which contains a list of table definitions
+	 * @todo - change from single tablename to array of tablenames
+	 * @param  array $table_names list of tablenames to include in the schema
+	 * @return DataSchema              [description]
 	 */
 	function get_schema($table_name)
 	{
