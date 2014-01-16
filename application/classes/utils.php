@@ -111,3 +111,30 @@ function create_folders($path)
 		return false;
 	}
 }
+
+/**
+ * Returns true if the text starts with
+ * @param  [string] $haystack the text
+ * @param  [string] $needle   the substring
+ * @return [bool]             true if starts with
+ */
+function starts_with($haystack, $needle)
+{
+    return !strncmp($haystack, $needle, strlen($needle));
+}
+
+/**
+ * Returns true if the text ends with
+ * @param  [string] $haystack the text
+ * @param  [string] $needle   the substring
+ * @return [bool]             true if starts with
+ */
+function ends_with($haystack, $needle)
+{
+    $length = strlen($needle);
+    if ($length == 0) {
+        return true;
+    }
+
+    return (substr($haystack, -$length) === $needle);
+}

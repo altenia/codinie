@@ -33,7 +33,7 @@ class ControllerBase
    */
   public function render_view() {
     if (!empty($this->view)) {
-	  View::set_shared_data('context_path', $this->request_context->context_path);
+      View::set_shared_data('context_path', $this->request_context->context_path);
       View::set_shared_data('request_context', $this->request_context);
       $this->view->render();
     }
@@ -123,19 +123,19 @@ class ControllerBase
     return $this->request_context->action_name;
   }
 
-	/**
-	 * Retrives the parameter value from GET or POST (in that order)
-	 */
-	public function get_request_param($pname, $def_val = null)
-	{
-		if (array_key_exists($pname, $_GET)) {
-			return $_GET[$pname];
-		}
-		if (array_key_exists($pname, $_POST)) {
-			return $_POST[$pname];
-		}
-		return $def_val;
-	}
+  /**
+   * Retrives the parameter value from GET or POST (in that order)
+   */
+  public function get_request_param($pname, $def_val = null)
+  {
+    if (array_key_exists($pname, $_GET)) {
+      return $_GET[$pname];
+    }
+    if (array_key_exists($pname, $_POST)) {
+      return $_POST[$pname];
+    }
+    return $def_val;
+  }
     
   /**
    * Returns true if the current HTTP method is GET

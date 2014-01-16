@@ -1,4 +1,4 @@
- <?php 
+<?php 
  /**
  * The index.php serves as the main entry point for the application.
  * It retrieves the controler and action names form Request (SERVER) information

@@ -2,7 +2,7 @@
 /**
  * Main configuration
  */
- 
+date_default_timezone_set('America/New_York');
 define('APP_NAME', 'Codini');
 define('APP_TAGLINE', 'Speeding up the agility!');
 define('APP_VERSION', '0.7');
@@ -20,7 +20,7 @@ define('SHARED_MODULES_PATH', MODULES_PATH . '_shared/');
 define('SHARED_VIEWS_PATH', SHARED_MODULES_PATH . 'views/');
 
 define('USE_PATH_INFO', false);
-define('VIEW_CLASS', 'PhpView'); // Available views: PhpView, SavantView, MoustacheView
+define('VIEW_CLASS', 'SavantView'); // Available views: PhpView, SavantView, MoustacheView
 
 
 //////////////////////////////////////////////////

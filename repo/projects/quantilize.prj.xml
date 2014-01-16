@@ -3,11 +3,11 @@
 	<owner>Young Suk Ahn</owner>
 	<language>Scala</language>
 	<description>Quantilize</description>
-	<codegen-dest>C:\appservers\webapps\codini\repo/projects/quantilize/</codegen-dest>
+	<codegen-dest>./repo/projects/quantilize/</codegen-dest>
 	<last-modif>13/03/25-09:05:09</last-modif>
 	<data-source>
 		<type>Hbm</type>
-		<url>C:\appservers\webapps\codini\repo\projects\data-schemas\</url>
+		<url>./repo/projects/data-schemas/</url>
 		<username></username>
 		<db_name>quantilize</db_name>
 	</data-source>

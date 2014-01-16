@@ -30,7 +30,7 @@ class Ds_Introspector_Hbm extends Ds_Introspector
 		if (!is_dir($url)) {
 			throw new Exception('Invalid directory [' . $url . ']');
 		}
-		$this->url = $url;
+		$this->url = ends_with($url, '/') ? $url : $url . '/';
 		$this->db_name = $schema_name;
 	}
 	
@@ -44,7 +44,6 @@ class Ds_Introspector_Hbm extends Ds_Introspector
 		} else {
 			$name_pattern .= $name_pattern . '.hbm.xml';
 		}
-		//print_r($this->url . $name_pattern);
 		$files = glob($this->url . $name_pattern);
 				
 		$retval = null;

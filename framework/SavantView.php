@@ -26,7 +26,7 @@ class SavantView extends View
   public function __construct() {
     parent::__construct();
     $this->_template = new Savant3();
-    $this->_template->setPath('template', SHARED_MODULES_PATH);
+    $this->_template->setPath('template', SHARED_VIEWS_PATH);
   }
 
   /**
@@ -38,7 +38,7 @@ class SavantView extends View
    */
   public function add_path($template_path) {
     parent::add_path($template_path);
-    $this->_template->setPath('template', array($template_path, SHARED_MODULES_PATH));
+    $this->_template->setPath('template', array($template_path, SHARED_VIEWS_PATH));
   }
 
   /**

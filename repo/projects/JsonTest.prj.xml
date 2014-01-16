@@ -1,0 +1,21 @@
+<project>
+	<name>To JSON Test</name>
+	<owner>Young Suk Ahn</owner>
+	<language>JSON</language>
+	<description></description>
+	<codegen-dest>../temp</codegen-dest>
+	<last-modif>13/05/05-10:02:51</last-modif>
+	<data-source>
+		<type>Hbm</type>
+		<url>./repo/projects/data-schemas/</url>
+		<username></username>
+		<db_name>emarket</db_name>
+	</data-source>
+	<active-templates>
+		<template name="json_dbschema" />
+	</active-templates>
+	<params>
+		<param name="prefix" value="Test" />
+		<param name="suffix" value="Ex" />
+	</params>
+</project>
