@@ -7,7 +7,7 @@
 	<last-modif>13/03/23-10:33:22</last-modif>
 	<data-source>
 		<type>Hbm</type>
-		<url>C:\appservers\webapps\codini\repo\projects\data-schemas\</url>
+		<url>./repo/projects/data-schemas/</url>
 		<username>test</username>
 		<db_name>test</db_name>
 	</data-source>

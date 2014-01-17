@@ -92,7 +92,7 @@
 		var checked = false;
 		$("#toggle_select").on("click", function(){
 			checked = !checked;
-			$("[name=tables]").prop('checked', checked);
+			$("[name='tables[]']").prop('checked', checked);
 		})
 	})
 </script>

@@ -1,5 +1,5 @@
-CODINI
-======
+CODINIE
+=======
 
 About
 -----
@@ -16,7 +16,8 @@ No database required. Just make user you have file write permission.
 
 Using
 -----
-Go to the Codini home, and create a new project.
+Go to the Codinie home, and create a new project.
 
-Suppported format
+#Suppported formats#
+- Hibernate's hbm
 

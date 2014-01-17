@@ -1,7 +1,7 @@
 <?php 
 defined('APP_PATH') or die('No direct script access.');
 
-require_once SHARED_MODULES_PATH . 'CodiniController.php';
+require_once SHARED_MODULES_PATH . 'CodinieController.php';
 Loader::load('utils.php');
 
 /**
@@ -9,7 +9,7 @@ Loader::load('utils.php');
  *
  * @author Young Suk Ahn
  */
-class Controller_Content extends CodiniController {
+class Controller_Content extends CodinieController {
     
 	/**
 	 * Constructur. Calls the parent's constructor

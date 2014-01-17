@@ -1,0 +1,3 @@
+2014-01-16 19:52:04 - INFO --> Project [JsonTest]: Code generated with template [json_dbschema].
+2014-01-16 19:52:54 - INFO --> Project [JsonTest]: Code generated with template [json_dbschema].
+2014-01-16 19:53:02 - INFO --> Project [JsonTest]: Code generated with template [json_dbschema].

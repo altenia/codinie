@@ -1,7 +1,7 @@
 <?php 
 defined('APP_PATH') or die('No direct script access.');
 
-require_once SHARED_MODULES_PATH . 'CodiniController.php';
+require_once SHARED_MODULES_PATH . 'CodinieController.php';
 Loader::load('TemplateManager.php');
 Loader::load('ProjectManager_Xml.php');
 Loader::load('DataStructure_Serializer.php');
@@ -12,7 +12,7 @@ Loader::load('CodeGen_PhpTemplate.php');
  *
  * @author Young Suk Ahn
  */
-class Controller_Project_Main extends CodiniController {
+class Controller_Project_Main extends CodinieController {
     
     const DS_INTROSPECTOR_PREFIX = 'Ds_Introspector_';
     const MEMBER_SEPARATOR = '_';

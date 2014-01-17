@@ -3,9 +3,9 @@
  * Main configuration
  */
 date_default_timezone_set('America/New_York');
-define('APP_NAME', 'Codini');
+define('APP_NAME', 'Codinie');
 define('APP_TAGLINE', 'Speeding up the agility!');
-define('APP_VERSION', '0.7');
+define('APP_VERSION', '0.1.1');
 
 define('CONTEXT_PATH', 'codini');
 define('SYS_PATH', dirname(__FILE__) . DIRECTORY_SEPARATOR);

@@ -8,14 +8,14 @@ require_once FRAMEWORK_PATH . 'LayoutController.php';
  *
  * @author Young Suk Ahn
  */
-class CodiniController extends LayoutController {
+class CodinieController extends LayoutController {
     
 	/**
 	 * Constructur. Calls the parent's constructor
 	 */
     public function __construct() {
         parent::__construct();
-		View::set_shared_data('require_js_main', '/codini/public/main');
+		View::set_shared_data('require_js_main', '/' . CONTEXT_PATH . '/public/main');
     }
 
 	// Called by the framework

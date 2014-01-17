@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title>[Codini] <?php echo $this->title; ?></title>
+	<title><?php echo '[' . APP_NAME . ']' . $this->title; ?></title>
 	<link rel="stylesheet" href="<?php echo $this->context_path; ?>/public/bootstrap/css/bootstrap.css">
 	<script src="<?php echo $this->context_path; ?>/public/require-jquery.js" data-main="<?php echo $this->require_js_main; ?>"></script>
 </head>
@@ -38,7 +38,7 @@
 			</div>
 		</div>
 		<footer>
-        <p>Codini (version <?php echo APP_VERSION; ?>) | <a href="<?php echo route_url($this->request_context, 'Content', 'show', array( 'page'=>'about.html')); ?>">About<a></p>
+        <p><?php echo APP_NAME . ' (version '. APP_VERSION . ')'; ?> | <a href="<?php echo route_url($this->request_context, 'Content', 'show', array( 'page'=>'about.html')); ?>">About<a></p>
 		</footer>
 	</div>
 </body>
